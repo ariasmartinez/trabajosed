@@ -6,13 +6,21 @@ typedef struct{
   int minimo; ///<el minimo
 }elemento;
 
+/* Está puesto en pila_min_lista ¿Lo ponemos?
+
+ostream & operator<<(ostream & os,const elemento & a){
+ os<<a.ele<< " Minimo: "<<a.minimo<<endl;
+ return os;
+}
+*/
+
 class Pila_max_Cola{
 private:
     Cola<elemento> datos;
 }
 
 public:
-  
+
   Pila_max_Cola();
 
   Pila_max_Cola(Cola<elementos> dat);
