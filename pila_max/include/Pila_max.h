@@ -1,9 +1,10 @@
-#ifndef __Pila_max_Cola_H__
-#define __Pila_max_Cola_H__
+#ifndef __Pila_max_H__
+#define __Pila_max_H__
 
+#include "cola.h"
 typedef struct{
   int ele; ///<elemento a almacenar
-  int minimo; ///<el minimo
+  int maximo; ///<el máximo
 }elemento;
 
 /* Está puesto en pila_min_lista ¿Lo ponemos?
@@ -14,22 +15,24 @@ ostream & operator<<(ostream & os,const elemento & a){
 }
 */
 
-class Pila_max_Cola{
+class Pila_max{
 private:
-    Cola<elemento> datos;
+    cola<elemento> datos;
 }
 
 public:
+/**
+* @brief: Constructor por defecto. Crea una pila_max vacía.
+*/
+  Pila_max();
 
-  Pila_max_Cola();
+  Pila_max(cola<elemento> dat);
 
-  Pila_max_Cola(Cola<elementos> dat);
+  Pila_max(const Pila_max_Cola & otra);
 
-  Pila_max_Cola(const Pila_max_Cola & otra);
+  ~Pila_max();
 
-  ~Pila_max_Cola();
-
-  Pila_max_Cola& operator= (const Pila_max_Cola& otra);
+  Pila_max& operator= (const Pila_max& otra);
 
   bool vacia() const;
 
