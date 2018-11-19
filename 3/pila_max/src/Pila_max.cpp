@@ -36,27 +36,33 @@ const elemento & Pila_max::tope () const{
 
 void Pila_max::poner(const int & elem){
   int max;
-  if(elem > datos.frente().maximo)
+  if(elem > this->datos.frente().maximo)
     max = elem;
   else
-    max = datos.frente().maximo;
+    max = this->datos.frente().maximo;
 
   elemento ele_nuevo = {elem,max};
 
   cola<elemento> nueva;
   nueva.poner(ele_nuevo);
 
-  elemento vector [this->datos.num_elementos()];
-  for(int i=0; i< this->datos.num_elementos(); i++){
+  int tamanio = this->datos.num_elementos();
+  elemento vector [tamanio];
+
+  for(int i=0; i<tamanio; i++){
     vector[i] = this->datos.frente();
-    this
+    this->datos.quitar()
   }
+  for(int i=0; i<tamanio; i++){
+    nueva.poner(vector[i]);
+  }
+  this->datos = nueva;
 }
 
 void Pila_max::quitar(){
-
+  this->datos.quitar();
 }
 
 int Pila_max::num_elementos() const{
-
+  return(datos.num_elementos());
 }
