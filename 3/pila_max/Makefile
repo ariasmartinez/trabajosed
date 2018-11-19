@@ -23,7 +23,7 @@ $(OBJ)/Pila_max.o : $(INC)/Pila_max.h $(INC)/cola.h
 	$(CXX) $(CPPFLAGS) -I./$(INC) -c -o $(OBJ)/Pila_max.o $(SRC)/Pila_max.cpp
 
 $(OBJ)/cola.o : $(INC)/cola.h 
-	$(CXX) $(CPPFLAGS) -I./$(INC) -c -o $(OBJ)/cola.o $(SRC)/cola.cpp
+	$(CXX) $(CPPFLAGS) -I./$(INC) -c -o $(OBJ)/cola.o $(INC)/cola.h
 
 
 # ************ Limpieza ************
