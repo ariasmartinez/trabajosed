@@ -6,7 +6,7 @@ CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c
 
 
-all: clean $(BIN)/usopilas_max
+all: $(BIN)/usopilas_max
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
@@ -19,10 +19,10 @@ $(BIN)/usopilas_max: $(OBJ)/usopilas_max.o $(OBJ)/Pila_max.o $(OBJ)/cola.o
 $(OBJ)/usopilas_max.o : $(INC)/Pila_max.h $(INC)/cola.h 
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/usopilas_max.o $(SRC)/usopilas_max.cpp
 
-$(OBJ)/Pila_max.o : $(INC)/Pila_max.h $(INC)/cola.h 
+$(OBJ)/Pila_max.o : $(INC)/Pila_max.h $(INC)/cola.h $(INC)/elemento.h
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/Pila_max.o $(SRC)/Pila_max.cpp
 
-$(OBJ)/cola.o : $(INC)/cola.h 
+$(OBJ)/cola.o : $(INC)/cola.h $(INC)/elemento.h
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/cola.o $(SRC)/cola.cpp 
 
 

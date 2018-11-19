@@ -5,6 +5,7 @@
   */
 #include <cassert>
 #include "cola.h"
+#include "elemento.h"
 
 /* _________________________________________________________________________ */
 
@@ -95,10 +96,6 @@ void Cola<T>::quitar(){
 }
 
 
-typedef struct{
-  int ele; ///<elemento a almacenar
-  int maximo; ///<el máximo
-}elemento;
 
 
 template class Cola<elemento>;

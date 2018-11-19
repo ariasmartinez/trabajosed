@@ -3,14 +3,10 @@
 
 #include "cola.h"
 #include <iostream>
+#include "elemento.h"
 
 
 using namespace std;
-
-typedef struct{
-  int ele; ///<elemento a almacenar
-  int maximo; ///<el máximo
-}elemento;
 
 
 ostream & operator<<(ostream & os,const elemento & a);

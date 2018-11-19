@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
   Pila_max p;
-  int i=1;
+  int i=2;
   //for(i=10; i>=0; i--){
   //  p.poner(i);
   //}
@@ -18,7 +18,6 @@ int main(){
   p.poner(6);
   p.poner(1);
   */
-  cout << p;
 
   return 0;
 }
