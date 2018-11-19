@@ -4,6 +4,7 @@
 #include "cola.h"
 #include <iostream>
 
+
 using namespace std;
 
 typedef struct{
@@ -12,11 +13,7 @@ typedef struct{
 }elemento;
 
 
-ostream & operator<<(ostream & os,const elemento & a){
- os<<a.ele<< " Máximo: "<<a.maximo<<endl;
- return os;
-}
-
+ostream & operator<<(ostream & os,const elemento & a);
 
 class Pila_max{
 private:
@@ -49,7 +46,7 @@ public:
 
   int num_elementos() const;
 
-  friend ostream & operator<<(ostream & os, Pila_max & pila);
+  friend ostream & operator<<(ostream & os, const Pila_max & pila);
 
 };
 

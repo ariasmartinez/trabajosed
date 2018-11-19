@@ -9,7 +9,7 @@
 #ifndef __Cola_H__
 #define __Cola_H__
 
-#include <../src/cola.cpp>
+
 
 #include <cassert>
 
@@ -125,7 +125,7 @@ class Cola{
     }
 };
 
-
+//#include "../src/cola.cpp"
 
 #endif // __Cola_H__
 

@@ -1,4 +1,4 @@
-// #include "cola.h" ¿si está añadido en el .h hace falta ponerlo?
+#include "cola.h"
 #include"Pila_max.h"
 #include <iostream>
 using namespace std;
@@ -27,24 +27,27 @@ Pila_max& Pila_max::operator= (const Pila_max& otra){
 }
 
 bool Pila_max::vacia() const{
-  return(datos.vacia());
+  return datos.vacia();
 }
 
 elemento & Pila_max::tope(){
-  return(datos.frente());
+  return datos.frente();
 }
 
 const elemento & Pila_max::tope () const{
-  return(datos.frente());
+  return datos.frente();
 }
 
 void Pila_max::poner(const int & elem){
   int max;
+  if(!this->vacia()){
   if(elem > this->datos.frente().maximo)
     max = elem;
   else
     max = this->datos.frente().maximo;
-
+  }
+  else
+    max =elem;
   elemento ele_nuevo = {elem,max};
 
   Cola<elemento> nueva;
@@ -68,14 +71,20 @@ void Pila_max::quitar(){
 }
 
 int Pila_max::num_elementos() const{
-  return(datos.num_elementos());
+  return datos.num_elementos();
 }
 
-ostream & operator<<(ostream & os, Pila_max & pila){
-  while (!pila.vacia() ){
-    elemento x = pila.tope();
+ostream & operator<<(ostream & os,const elemento & a){
+ os<<a.ele<< " Máximo: "<<a.maximo<<endl;
+ return os;
+}
+
+ostream & operator<<(ostream & os, const Pila_max & pila){
+  Pila_max aux = pila;
+  while (!aux.vacia() ){
+    elemento x = aux.tope();
     os << x << endl;
-    pila.quitar();
+    aux.quitar();
   }
 
   return os;

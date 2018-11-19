@@ -4,7 +4,7 @@
   *
   */
 #include <cassert>
-#include <cola.h>
+#include "cola.h"
 
 /* _________________________________________________________________________ */
 
@@ -93,3 +93,12 @@ void Cola<T>::quitar(){
     ultima=0;                     //actualizamos ultima
   num_elem--;                     //Actualizamos el n�mero de elementos
 }
+
+
+typedef struct{
+  int ele; ///<elemento a almacenar
+  int maximo; ///<el máximo
+}elemento;
+
+
+template class Cola<elemento>;
