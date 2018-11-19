@@ -2,23 +2,26 @@
 #define __Pila_max_H__
 
 #include "cola.h"
+#include <iostream>
+
+using namespace std;
+
 typedef struct{
   int ele; ///<elemento a almacenar
   int maximo; ///<el máximo
 }elemento;
 
-/* Está puesto en pila_min_lista ¿Lo ponemos?
 
 ostream & operator<<(ostream & os,const elemento & a){
- os<<a.ele<< " Minimo: "<<a.minimo<<endl;
+ os<<a.ele<< " Máximo: "<<a.maximo<<endl;
  return os;
 }
-*/
+
 
 class Pila_max{
 private:
-    cola<elemento> datos;
-}
+    Cola<elemento> datos;
+
 
 public:
 /**
@@ -26,9 +29,9 @@ public:
 */
   Pila_max();
 
-  Pila_max(cola<elemento> dat);
+  Pila_max(Cola<elemento> dat);
 
-  Pila_max(const Pila_max_Cola & otra);
+  Pila_max(const Pila_max & otra);
 
   ~Pila_max();
 
@@ -45,3 +48,12 @@ public:
   void quitar();
 
   int num_elementos() const;
+
+  friend ostream & operator<<(ostream & os, Pila_max & pila);
+
+};
+
+
+
+
+#endif

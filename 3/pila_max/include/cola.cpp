@@ -4,8 +4,10 @@
   *
   */
 #include <cassert>
-//#include <cola.h>  
+#include "cola.h"
+#include <iostream>
 
+using namespace std;
 /* _________________________________________________________________________ */
 
 

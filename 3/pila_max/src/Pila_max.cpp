@@ -1,12 +1,12 @@
 // #include "cola.h" ¿si está añadido en el .h hace falta ponerlo?
 #include"Pila_max.h"
-
+#include <iostream>
 using namespace std;
 
 Pila_max::Pila_max(){
 
 }
-Pila_max::Pila_max(cola<elemento> dat){
+Pila_max::Pila_max(Cola<elemento> dat){
   datos = dat;
 }
 
@@ -19,7 +19,11 @@ Pila_max::~Pila_max(){
 }
 
 Pila_max& Pila_max::operator= (const Pila_max& otra){
+  if(&otra != this){
+    this->datos = otra.datos;
+  }
 
+  return *this;
 }
 
 bool Pila_max::vacia() const{
@@ -43,7 +47,7 @@ void Pila_max::poner(const int & elem){
 
   elemento ele_nuevo = {elem,max};
 
-  cola<elemento> nueva;
+  Cola<elemento> nueva;
   nueva.poner(ele_nuevo);
 
   int tamanio = this->datos.num_elementos();
@@ -51,7 +55,7 @@ void Pila_max::poner(const int & elem){
 
   for(int i=0; i<tamanio; i++){
     vector[i] = this->datos.frente();
-    this->datos.quitar()
+    this->datos.quitar();
   }
   for(int i=0; i<tamanio; i++){
     nueva.poner(vector[i]);
@@ -65,4 +69,14 @@ void Pila_max::quitar(){
 
 int Pila_max::num_elementos() const{
   return(datos.num_elementos());
+}
+
+ostream & operator<<(ostream & os, Pila_max & pila){
+  while (!pila.vacia() ){
+    elemento x = pila.tope();
+    os << x << endl;
+    pila.quitar();
+  }
+
+  return os;
 }
