@@ -1,3 +1,9 @@
+/**
+* @file Pila_max.cpp
+* @brief Implementación del TDA Pila_max
+* @authors Celia Arias Martínez
+           Lucía Salamanca López
+*/
 #include "cola.h"
 #include"Pila_max.h"
 #include <iostream>
