@@ -101,6 +101,7 @@ public:
 * @brief Salida de un elemento a ostream
 * @param os stream de salida
 * @param pila Pila_max a escribir
+* @post Se obtiene un elemento con formato elemento tope \n elemento tope-1 \n .... elemento 0
 */
   friend ostream & operator<<(ostream & os, const Pila_max & pila);
 
