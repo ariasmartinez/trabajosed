@@ -81,7 +81,7 @@ int Pila_max::num_elementos() const{
 }
 
 ostream & operator<<(ostream & os,const elemento & a){
- os<<a.ele<< " Máximo: "<<a.maximo<<endl;
+ os<<a.ele<< " Máximo: "<<a.maximo;
  return os;
 }
 
@@ -92,6 +92,7 @@ ostream & operator<<(ostream & os, const Pila_max & pila){
     os << x << endl;
     aux.quitar();
   }
+  os << endl;
 
   return os;
 }

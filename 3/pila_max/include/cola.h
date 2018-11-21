@@ -1,8 +1,9 @@
-/**
+/** @authors  Lucía Salamanca López
+	      Celia Arias Martínez
   * @file cola.h
   * @brief Fichero cabecera del TDA Cola
   *
-  * Gestiona una secuencia de elementos con facilidades para la inserciÃ³n y
+  * Gestiona una secuencia de elementos con facilidades para la inserción y
   * borrado de elementos en un extremo
   */
 
@@ -35,9 +36,6 @@
  *
  * El espacio requerido para el almacenamiento es O(n), donde n es el nÃºmero 
  * de elementos de la cola.
- *
- * @author J. Fdez-Valdivia
- * @date Octubre 2011
 */
 template <class T>
 class Cola{

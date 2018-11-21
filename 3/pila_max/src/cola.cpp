@@ -1,4 +1,5 @@
-/**
+/** @authors Lucía Salamanca López
+             Celia Arias Martínez
   * @file cola.cpp
   * @brief Implementaci�n del TDA Cola
   *

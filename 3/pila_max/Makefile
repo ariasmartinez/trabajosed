@@ -16,13 +16,13 @@ documentacion:
 $(BIN)/usopilas_max: $(OBJ)/usopilas_max.o $(OBJ)/Pila_max.o $(OBJ)/cola.o
 	$(CXX) -o $(BIN)/usopilas_max $(OBJ)/usopilas_max.o $(OBJ)/Pila_max.o $(OBJ)/cola.o 
 
-$(OBJ)/usopilas_max.o : $(INC)/Pila_max.h $(INC)/cola.h 
+$(OBJ)/usopilas_max.o : $(INC)/Pila_max.h $(INC)/cola.h $(SRC)/usopilas_max.cpp
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/usopilas_max.o $(SRC)/usopilas_max.cpp
 
-$(OBJ)/Pila_max.o : $(INC)/Pila_max.h $(INC)/cola.h $(INC)/elemento.h
+$(OBJ)/Pila_max.o : $(INC)/Pila_max.h $(INC)/cola.h $(INC)/elemento.h $(SRC)/Pila_max.cpp
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/Pila_max.o $(SRC)/Pila_max.cpp
 
-$(OBJ)/cola.o : $(INC)/cola.h $(INC)/elemento.h
+$(OBJ)/cola.o : $(INC)/cola.h $(INC)/elemento.h $(SRC)/cola.cpp
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/cola.o $(SRC)/cola.cpp 
 
 

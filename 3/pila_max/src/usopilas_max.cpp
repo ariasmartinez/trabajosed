@@ -1,3 +1,10 @@
+/*
+  @file usopilas_max.cpp
+  @brief main para probar la clase Pila_max
+  @authors Lucía Salamanca López
+           Celia Arias Martínez
+*/
+
 #include <iostream>
 #include "Pila_max.h"
 
@@ -6,18 +13,13 @@ using namespace std;
 int main(){
   Pila_max p;
   int i=2;
-  //for(i=10; i>=0; i--){
-  //  p.poner(i);
-  //}
+  cout << "Introduce elementos para aniadir a la pila, hasta aniadir el elemento cero:" << endl;
   while(i!=0){
     cin >> i ;
     p.poner(i);
     cout << p;
   }
-  /*p.poner(2);
-  p.poner(6);
-  p.poner(1);
-  */
+
 
   return 0;
 }
