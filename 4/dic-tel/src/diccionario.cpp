@@ -103,6 +103,62 @@ int Diccionario::size()const{
 }
 
 
+
+ostream & Diccionario::operator<<(ostream & os, const Diccionario<string,string> & D){
+	  
+	list<data<string,string> >::const_iterator it;
+	  
+	for (it=D.begin(); it!=D.end(); ++it){
+	  
+		list<string>::const_iterator it_s;
+		    
+		 os<<endl<<(*it).clave<<endl<<" informacion asociada:"<<endl;
+		 for (it_s=(*it).info_asoci.begin();it_s!=(*it).info_asoci.end();++it_s){
+			os<<(*it_s)<<endl;
+		 }
+		 os<<"**************************************"<<endl;
+	  }
+	  
+	return os;
+}
+
+
+istream & Diccionario::operator >>(istream & is,Diccionario<string,string> &D){
+	  int np;
+	  is>>np;
+	  is.ignore();//quitamos \n
+	  Diccionario<string,string> Daux;
+	  for (int i=0;i<np; i++){
+		    string clave;
+
+		    getline(is,clave); 
+		    
+		    int ns;
+		    is>>ns; 
+		    is.ignore();//quitamos \n
+		    list<string>laux;
+		    for (int j=0;j<ns; j++){
+			      string s;
+			      getline(is,s);
+			      
+			      // cout<<"Significado leido "<<s<<endl;
+			      laux.insert(laux.end(),s);
+		    }
+		    Daux.Insertar(clave,laux);		      
+		    
+	  }
+	  D=Daux;
+	  return is;
+}
+
+
+void Diccionario::EscribeSigni(const list<string>&l){		 
+	  list<string>::const_iterator it_s;
+	  
+	  for (it_s=l.begin();it_s!=l.end();++it_s){
+		    cout<<*it_s<<endl;
+	  }
+}	
 //no se si esto va así
 
 typename list<data<T,U> >::iterator & Diccionario::begin(){

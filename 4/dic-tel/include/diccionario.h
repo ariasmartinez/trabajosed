@@ -99,6 +99,27 @@ class Diccionario{
 		/*Devuelve el tamaño del diccionario*/
 		int size()const;
 
+	
+		/*Operator<<. Obsérvese el uso de 2 tipos diferentes de iteradores. Uno sobre 
+		listas de listas y otro sobre listas
+		*/
+		//lo ponemos friend?
+		ostream & operator<<(ostream & os, const Diccionario<string,string> & D);
+
+
+		/*Operator >>. El formato de la entrada es:
+		     numero de claves en la primera linea
+		     clave-iésima retorno de carro
+		     numero de informaciones asociadas en la siguiente linea
+		     y en cada linea obviamente la informacion asociada
+		*/
+
+		istream & operator >>(istream & is,Diccionario<string,string> &D);
+
+
+		/*Recorre la lista de información asociada a una clave y la imprime*/
+		void EscribeSigni(const list<string>&l);
+
 
  		/*Funciones begin y end asociadas al diccionario*/
 		 typename list<data<T,U> >::iterator & begin();
@@ -108,6 +129,31 @@ class Diccionario{
 		 typename list<data<T,U> >::const_iterator &end()const;
 		 	
 };
+
+
+/*
+	 TRABAJO: añadir 3 metodos más.
+	 RESUMEN de las cosas que sabemos hacer (no sabemos si están bien implementadas):
+		Copiar diccionarios
+		Borrar diccionarios
+		Crear diccionarios
+		Buscar una clave en el diccionario (y devolver un iterador a esa clave)
+		Insertar un nuevo registro en el diccionario (clave)
+		Insertar un nuevo elemento a la lista de alguna clave (add_significado_palabra)
+		Devolver la lista asociada a una clave
+		Tamaño de diccionario
+		Iterador al principio y final del diccionario
+		>> (leer de un fichero)
+		<< (escribir en fichero)
+		Escribir la lista asociada a una clave
+
+	AÑADIDOS por nosotras (o en proceso):
+		sort ( para  ordenar el diccionario)
+		borrarSignificadoPalabra (para borrar una entrada de una clave)
+		buscarPorPalabra (poner una palabra y que te diga las claves en las que está) 
+		
+		etc
+*/
 
 #endif
 	 
