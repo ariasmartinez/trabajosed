@@ -1,12 +1,13 @@
 #include <iostream>
 #include "diccionario.h"
-
+#include <string>
+#include <list>
 using namespace std;
 
 
-/*Lee un diccioario e imprime datos asociados a una clave. 
-Hay un fichero ejemplo de prueba: data.txt.Para lanzar el programa con ese fichero se escribe: 
-                  ./usodiccionario < data.txt 
+/*Lee un diccioario e imprime datos asociados a una clave.
+Hay un fichero ejemplo de prueba: data.txt.Para lanzar el programa con ese fichero se escribe:
+                  ./usodiccionario < data.txt
 */
 int main(){
 	Diccionario<string,string> D;
@@ -25,4 +26,3 @@ int main(){
 		  //EscribeSigni(l);
 
 }
-
