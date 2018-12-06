@@ -1,7 +1,7 @@
 #include <iostream>
 #include "diccionario.h"
 
-
+using namespace std;
 
 
 /*Lee un diccioario e imprime datos asociados a una clave. 
@@ -21,8 +21,8 @@ int main(){
 
 	list<string>l=D.getInfo_Asoc(a);
 
-	if (l.size()>0)
-		  EscribeSigni(l);
+	if (l.size()>0){}
+		  //EscribeSigni(l);
 
 }
 

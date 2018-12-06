@@ -7,8 +7,7 @@ obj = ./obj
 CPPFLAGS = -Wall -g  -I$(inc) -c
 
 
-
-#all: $(BIN)/usodiccionario
+all: $(bin)/usodiccionario
 
 $(bin)/usodiccionario: $(obj)/usodiccionario.o $(obj)/diccionario.o
 	g++ $(CPPFLAGS) $(obj)/usodiccionario.o  $(obj)/diccionario.o -o  $(bin)/usodiccionario

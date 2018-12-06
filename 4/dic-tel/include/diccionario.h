@@ -5,7 +5,7 @@
 #include <string>
 #include <list>
 
-//he quitado using namespace std
+using namespace std;
 
 // también pensé poner el data en un fichero aparte pero me rayé porque no se si sería .cpp o .h y lo he dejado asi 
 
@@ -63,7 +63,7 @@ class Diccionario{
 		 Diccionario();
 		// estaba puesto esto Diccionario():datos(list<data<T,U> >()){}
 
-		 Diccionario(lista<data<T,U> > datos);
+		 Diccionario(list<data<T,U> > datos);
 
 		Diccionario(const Diccionario &D);
 
@@ -104,7 +104,7 @@ class Diccionario{
 		listas de listas y otro sobre listas
 		*/
 		//lo ponemos friend?
-		ostream & operator<<(ostream & os, const Diccionario<string,string> & D);
+		friend ostream & operator<<(ostream & os, const Diccionario<string,string> & D);
 
 
 		/*Operator >>. El formato de la entrada es:
@@ -114,14 +114,14 @@ class Diccionario{
 		     y en cada linea obviamente la informacion asociada
 		*/
 
-		istream & operator >>(istream & is,Diccionario<string,string> &D);
+		friend istream & operator >>(istream & is,Diccionario<string,string> &D);
 
 
 		/*Recorre la lista de información asociada a una clave y la imprime*/
 		void EscribeSigni(const list<string>&l);
 
 
- 		/*Funciones begin y end asociadas al diccionario*/
+ 		//Funciones begin y end asociadas al diccionario*/
 		 typename list<data<T,U> >::iterator & begin();
 		 typename list<data<T,U> >::iterator &end();
 		 
