@@ -4,12 +4,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-istream & operator>>(istream &is,pair<string,string> &d){
-	  
-	  getline(is,d.first,'\t');
-	  getline(is,d.second);
-	  return is;
-}	  
+istream & operator>>(istream &is,pair<string,string> &d);	  
 
 
 class Guia_Tlf{
@@ -18,26 +13,19 @@ class Guia_Tlf{
 					     //multimap
 					     
 	  public:
-		    //Guia_Tlf(){}
-		    //Guia_Tlf(const Guia_Tlf & gt);
-		    //~Guia_Tlf(){}
-		    //Guia_Tlf & operator=(const Guia_Tlf & gt);
+		    Guia_Tlf(){}
+		    Guia_Tlf(const Guia_Tlf & gt);
+		    ~Guia_Tlf(){}
+		    Guia_Tlf & operator=(const Guia_Tlf & gt);
 		    /**
 		      @brief Acceso a un elemento
 		      @param nombre: nombre del elemento  elemento acceder
 		      @return devuelve el valor asociado a un nombre, es decir el teléfono
 		    */
-		    string & operator[](const string &nombre) {
-			      return datos[nombre];
-		    }
+		    string & operator[](const string &nombre) ;
 		    
 		    
-		    string  gettelefono(const string & nombre){
-			      map<string,string>::iterator it=datos.find(nombre);
-			      if (it==datos.end()) 
-					return string("");
-			      else return it->second;
-		    }
+		    string  gettelefono(const string & nombre);
 		     
 		    /**
 		     @brief Insert un nuevo telefono 
@@ -45,14 +33,7 @@ class Guia_Tlf{
 		     @param tlf: numero de telefono
 		     @return : un pair donde first apunta al nuevo elemento insertado y bool es true si se ha insertado el nuevo tlf o false en caso contrario
 		    */
-		    pair<map<string,string>::iterator,bool>  insert(string nombre, string tlf){
-			      pair<string,string> p (nombre,tlf);
-			      pair< map<string,string> ::iterator,bool> ret;
-
-			      ret=datos.insert(p); 
-			      return ret;     
-					
-		    }
+		    pair<map<string,string>::iterator,bool>  insert(string nombre, string tlf);
 		    
 		    /**
 		     @brief Insert un nuevo telefono 
@@ -60,15 +41,7 @@ class Guia_Tlf{
 		     
 		     @return : un pair donde first apunta al nuevo elemento insertado y bool es true si se ha insertado el nuevo tlf o false en caso contrario
 		    */
-		    pair<map<string,string>::iterator,bool>  insert(pair<string,string> p){
-			      
-			      pair<map<string,string> ::iterator,bool> ret;
-
-			      ret=datos.insert(p); 
-			      return ret;     
-					
-		    }
-		    
+		    pair<map<string,string>::iterator,bool>  insert(pair<string,string> p);
 		    
 		    
 		    /**
@@ -76,11 +49,7 @@ class Guia_Tlf{
 		      @param nombre: nombre que se quiere borrar
 		      @note: en caso de que fuese un multimap borraria todos con ese nombre
 		    */
-		    void borrar(const string &nombre){
-			   map<string,string>::iterator itlow = datos.lower_bound(nombre);//el primero que tiene dicho nombre
-			   map<string,string>::iterator itupper = datos.upper_bound(nombre);//el primero que ya no tiene dicho nombre
-			   datos.erase(itlow,itupper);//borramos todos aquellos que tiene dicho nombre
-		    }
+		    void borrar(const string &nombre);
 		    
 		    /**
 		      @brief Borrar un telefono
@@ -88,19 +57,7 @@ class Guia_Tlf{
 		      @note: esta funcion nos permite borrar solamente aquel que coincida en nombre y tlf
 		    */
 		    //con map siempre hay uno con multimap puede existir mas de uno
-		    void borrar(const string &nombre,const string &tlf){
-		           map<string,string>::iterator itlow = datos.lower_bound(nombre);//el primero que tiene dicho nombre
-			   map<string,string>::iterator itupper = datos.upper_bound(nombre);//el primero que ya no tiene dicho nombre
-			   map<string,string>::iterator it;
-			   bool salir =false;
-			   for (it=itlow; it!=itupper && !salir;++it){
-				     if (it->second==tlf){
-					datos.erase(it);
-					salir =true;
-				     }		
-			   }		
-			   
-		    }
+		    void borrar(const string &nombre,const string &tlf);
 		    /**
 		      @brief  Numero de telefonos 
 		      @return el numero de telefonos asociados
@@ -130,30 +87,14 @@ class Guia_Tlf{
 		      @param g: guia que se une
 		      @return: una nueva guia resultado de unir el objeto al que apunta this y g
 		    */
-		    Guia_Tlf operator+(const Guia_Tlf & g){
-			Guia_Tlf aux(*this);
-			map<string,string>::const_iterator it;
-			for (it=g.datos.begin();it!=g.datos.end();++it){
-			   aux.insert(it->first,it->second);
-			}	  
-			return aux;
-			
-		    }	   
+		    Guia_Tlf operator+(const Guia_Tlf & g);	   
 		    	      
 		    /**
 		      @brief Diferencia de guias de telefonos
 		      @param g: guia que se une
 		      @return: una nueva guia resultado de la diferencia del objeto al que apunta this y g
 		    */
-		    Guia_Tlf operator-(const Guia_Tlf & g){
-			Guia_Tlf aux(*this);
-			map<string,string>::const_iterator it;
-			for (it=g.datos.begin();it!=g.datos.end();++it){
-			   aux.borrar(it->first,it->second);
-			}	  
-			return aux;
-			
-		    }
+		    Guia_Tlf operator-(const Guia_Tlf & g);
 		    
 		    /**
 		      @brief Escritura de la guia de telefonos
@@ -163,13 +104,7 @@ class Guia_Tlf{
 		     */ 
 		      
 		    
-		    friend ostream & operator<<(ostream & os, Guia_Tlf & g){
-			      map<string,string>::iterator it;
-			      for (it=g.datos.begin(); it!=g.datos.end();++it){
-					os<<it->first<<"\t"<<it->second<<endl;
-			      }
-			      return os;
-		    }
+		    friend ostream & operator<<(ostream & os, Guia_Tlf & g);
 		    
 		    /**
 		      @brief Lectura de  la guia de telefonos
@@ -178,16 +113,7 @@ class Guia_Tlf{
 		      @return el flujo de entrada
 		    */
 		    
-		    friend istream & operator>>(istream & is, Guia_Tlf & g){
-			      pair<string,string> p;
-			      Guia_Tlf aux;
-			      
-			      while (is>>p){
-				  aux.insert(p);
-			      }
-			      g=aux;
-			      return is;
-		    }
+		    friend istream & operator>>(istream & is, Guia_Tlf & g);
 		    
 					
 			      
