@@ -82,13 +82,20 @@ void Diccionario<T,U>::AddSignificado_Palabra(const U & s ,const T &p){
 	 typename list<data<T,U> >::iterator it;
 
 	 if (!Esta_Clave(p,it)){
-		 //lo he puesto porque devuelve un iterador
-		 it = datos.insert(it,p);
-	 }
 
-			    //Insertamos el siginificado al final
-	 (*it).info_asoci.insert((*it).info_asoci.end(),s);
- }
+		 data<T,U> dat;
+		 dat.clave = p;
+		 dat.info_asoci.clear();
+		 dat.info_asoci.push_back(s);
+		 //lo he puesto porque devuelve un iterador
+		datos.insert(it,dat);
+
+	 }
+	 else {
+		 //Insertamos el siginificado al final
+		 (*it).info_asoci.push_back(s);
+	 }
+}
 
 
 template <class T, class U>
@@ -109,7 +116,7 @@ int Diccionario<T,U>::size()const{
 }
 
 
-template <class T, class U>
+//template <class T, class U>
 ostream & operator<<(ostream & os, const Diccionario<string,string> & D){
 
 	list<data<string,string> >::const_iterator it;
@@ -128,7 +135,7 @@ ostream & operator<<(ostream & os, const Diccionario<string,string> & D){
 	return os;
 }
 
-template <class T, class U>
+//template <class T, class U>
 istream & operator >>(istream & is,Diccionario<string,string> &D){
 	  int np;
 	  is>>np;

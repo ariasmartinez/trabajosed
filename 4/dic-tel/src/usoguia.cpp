@@ -1,5 +1,7 @@
 #include "guiatlf.h"
+#include <iostream>
 
+using namespace std;
 int main(){
 Guia_Tlf g;
  cout<<"Introduce una guia"<<endl;
@@ -14,20 +16,20 @@ Guia_Tlf g;
 	   if (tlf==""){
 		     cout<<"No existe ese nombre en la guia"<<endl;
 	   }
-	   else 
+	   else
 	    cout<<"El telefono es "<<tlf<<endl;
 	   cout<<"Dime un nombre sobre el que quieres obtener el telefono"<<endl;
- }	
+ }
  cin.clear();
  cout<<"Dime el nombre que quieres borrar"<<endl;
- 
+
  while (getline(cin,n)){
 	   g.borrar(n);
 	   cout<<"Dime el nombre que quieres borrar"<<endl;
  }
- 
+
  cout<<"Dime el nombre que quieres borrar"<<endl;
- 
+
  while (getline(cin,n)){
 	   g.borrar(n);
 	   cout<<"Ahora la guia es:"<<endl;
@@ -44,9 +46,9 @@ Guia_Tlf g;
  Guia_Tlf dif = g-otraguia;
 
  cout<<"La union de las dos guias: "<<endl <<un<<endl;
- 
- cout<<"La diferencia de las dos guias:"<<endl <<dif<<endl;
- 
 
- 
+ cout<<"La diferencia de las dos guias:"<<endl <<dif<<endl;
+
+
+
 }

@@ -25,7 +25,7 @@ string & Guia_Tlf::operator[](const string &nombre) {
 			      return datos[nombre];
 }
 
-string Guia_Tlf::(const string & nombre){
+string Guia_Tlf::gettelefono(const string & nombre){
   map<string,string>::iterator it=datos.find(nombre);
 	if (it==datos.end())
 		return string("");
@@ -56,7 +56,7 @@ void Guia_Tlf::borrar(const string &nombre){
   datos.erase(itlow,itupper);//borramos todos aquellos que tiene dicho nombre
 }
 
-void borrar(const string &nombre,const string &tlf){
+void Guia_Tlf::borrar(const string &nombre,const string &tlf){
   map<string,string>::iterator itlow = datos.lower_bound(nombre);//el primero que tiene dicho nombre
   map<string,string>::iterator itupper = datos.upper_bound(nombre);//el primero que ya no tiene dicho nombre
   map<string,string>::iterator it;

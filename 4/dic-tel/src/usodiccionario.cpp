@@ -23,6 +23,6 @@ int main(){
 	list<string>l=D.getInfo_Asoc(a);
 
 	if (l.size()>0){}
-		  //EscribeSigni(l);
+		  D.EscribeSigni(l);
 
 }
