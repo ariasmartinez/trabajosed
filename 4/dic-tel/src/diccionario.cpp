@@ -1,4 +1,9 @@
-
+/**
+* @file diccionario.cpp
+* @brief Implementación del TDA diccionario
+* @authors Celia Arias Martínez
+*          Lucía Salamanca López
+*/
 
 #include <iostream>
 #include <string>
@@ -97,6 +102,24 @@ void Diccionario<T,U>::AddSignificado_Palabra(const U & s ,const T &p){
 	 }
 }
 
+template <class T, class U>
+void Diccionario<T,U>::borrarSignificadoPalabra(const U &s, const T &p){
+	typename list<data<T,U> >::iterator it;
+	if (Esta_Clave(p,it)){
+		bool esta = false;
+		for(typename list<U>::iterator it2 = (*it).info_asoci.begin(); it2!=(*it).info_asoci.end() && !esta; it2++){
+			if((*it2) == s){
+				(*it).info_asoci.erase(it2);
+				esta = true;
+			}
+		}
+		if (!esta){
+			cout << "No existe dicho significado" << endl;
+		}
+	}
+	else
+		cout << "No existe dicha palabra" << endl;
+}
 
 template <class T, class U>
  list<U>  Diccionario<T,U>::getInfo_Asoc(const T & p) {
@@ -172,6 +195,32 @@ void Diccionario<T,U>::EscribeSigni(const list<string>&l){
 		    cout<<*it_s<<endl;
 	  }
 }
+
+template <class T, class U>
+void Diccionario<T,U>::EscribeLetra(const char c){
+	if (datos.size()>0){
+	 bool fin =false;
+	 bool escrito=false;
+	 typename list<data<T,U> >::iterator it;
+
+	 for (it=datos.begin(); it!=datos.end() && !fin ;++it){
+			 if ((*it).clave[0]==c) {
+				 cout << (*it).clave << ":"<< endl;
+				 EscribeSigni((*it).info_asoci);
+				 escrito = true;
+			}
+			 else if ((*it).clave[0]>c){
+					fin =true;
+			 }
+	 }
+
+	 if (!escrito){
+		 cout << "No hay ninguna entrada que empiece por esa letra" << endl;
+	 }
+
+}
+}
+
 //no se si esto va así (he quitado los & porque dijo algo gustavo )
 template <class T, class U>
 typename list<data<T,U> >::iterator  Diccionario<T,U>::begin(){
@@ -189,6 +238,7 @@ template <class T, class U>
 typename list<data<T,U> >::const_iterator Diccionario<T,U>::end()const {
 	return datos.end();
 }
+
 
 
 

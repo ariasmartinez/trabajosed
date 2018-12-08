@@ -1,3 +1,9 @@
+/**
+* @file diccionario.h
+* @brief Fichero cabecera del TDA Diccionario
+* @authors Celia Arias Martínez
+*          Lucía Salamanca López
+*/
 #ifndef _DICCIONARIO_H
 #define _DICCIONARIO_H
 
@@ -8,7 +14,6 @@
 
 using namespace std;
 
-// también pensé poner el data en un fichero aparte pero me rayé porque no se si sería .cpp o .h y lo he dejado asi
 
 /*Tipo elemento que define el diccionario. T es el tipo de dato asociado a una clave que
 no se repite (DNI p.ej.) y list<U> es una lista de datos (string p.ej) asociados a la clave
@@ -25,14 +30,23 @@ otro y borrar elimina todos los elementos de un diccionario. La implementación 
 puede hacerse usando iteradores o directamente usando la función assign.
 */
 
-
+/**
+* @class Diccionario
+* @brief Representa un diccionario
+*/
 template <class T,class U>
 class Diccionario{
 	  private:
-		    list<data<T,U> > datos;
+		    list<data<T,U> > datos; ///<Tipo elemento que define el diccionario. T es el tipo de dato asociado a una clave que no se repite (DNI p.ej.) y list<U> es una lista de datos (string p.ej) asociados a la clave de tipo T. El diccionario está ordenado de menor a mayor clave.
 
 
+				/**
+				* @brief Copia el contenido de un diccionario en el objeto this
+				* @param D diccionario a  copiar
+				*/
 	       void Copiar(const Diccionario<T,U>& D){
+
+					//
 			   /*typename list<data<T,U> >::const_iterator it_d;
 			   typename list<data<T,U> >::iterator it=this->datos.begin();*/
 
@@ -42,21 +56,33 @@ class Diccionario{
 
 			   }*/
 		     }
-
+				/**
+				* @brief Borra los elementos del diccionario
+				*/
 		    void Borrar(){
 			      datos.erase(datos.begin(),datos.end());
 		    }
 
 
  	public:
-
+		/**
+		* @brief Constructor por defecto, crea un diccionario vacío
+		*/
 		Diccionario();
 		// estaba puesto esto Diccionario():datos(list<data<T,U> >()){}
-
+		/**
+		* @brief Constructor a partir de una lista de datos
+		* @param dat lista de datos a partir de la cual se crea el diccionario
+		*/
 		Diccionario(list<data<T,U> > dat);
-
+		/**
+		* @brief Constructor de copia
+		* @param D objeto de la clase que se quiere copiar
+		*/
 		Diccionario(const Diccionario &D);
-
+		/**
+		* @brief Destructor de la clase
+		*/
  		~Diccionario();
 
 		Diccionario<T,U> & operator=(const Diccionario<T,U> &D);
@@ -78,6 +104,8 @@ class Diccionario{
                   Si no esta la clave la inserta y añade la informacion asociada.
 		 */
 		void AddSignificado_Palabra(const U & s ,const T &p);
+
+		void borrarSignificadoPalabra (const U &s, const T &p);
 
  		/* Devuelve la información (una lista) asociada a una clave p. Podrían
 		 haberse definido operator[] como
@@ -110,7 +138,8 @@ class Diccionario{
 		/*Recorre la lista de información asociada a una clave y la imprime*/
 		void EscribeSigni(const list<string>&l);
 
-
+		/* Imprime la informacion asociada a claves que empiezan por esa letra*/
+		void EscribeLetra( const char c);
  		//Funciones begin y end asociadas al diccionario*/
 		 typename list<data<T,U> >::iterator  begin();
 		 typename list<data<T,U> >::iterator end();

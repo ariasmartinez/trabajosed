@@ -18,6 +18,8 @@ Guia_Tlf::Guia_Tlf(const Guia_Tlf & gt){
 
 Guia_Tlf & Guia_Tlf::operator=(const Guia_Tlf & gt){
 
+	// hace falta?
+ (*this).datos = gt.datos;
 
 }
 
