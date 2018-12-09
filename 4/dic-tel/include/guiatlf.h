@@ -72,6 +72,11 @@ class Guia_Tlf{
 		    */
 		    pair<map<string,string>::iterator,bool>  insert(pair<string,string> p);
 
+		    /**
+		    * @brief Escribe los teléfonos de los nombres que empiecen por dicha letra
+                    * @param c Letra por la que empiezan los nombres
+	            */
+		    void EscribeLetra(const char c);
 
 		    /**
 		      @brief Borrar un telefono

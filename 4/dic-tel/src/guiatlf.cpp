@@ -52,6 +52,23 @@ pair<map<string,string>::iterator,bool>  Guia_Tlf::insert(pair<string,string> p)
 
 }
 
+void Guia_Tlf::EscribeLetra(const char c){
+	map<string,string>::iterator it;
+	bool fin=false, hay=false;
+	for(it= datos.begin(); it!=datos.end() && !fin; it++){
+		if((*it).first[0]==c){
+			hay = true;
+			cout << (*it).first << " " << (*it).second << endl;
+		}
+		else if((*it).first[0]>c)
+			fin = true;
+	}
+
+	if(!hay)
+		cout << "No existen nombres que empiecen por la letra " << c << endl;
+
+}
+
 void Guia_Tlf::borrar(const string &nombre){
   map<string,string>::iterator itlow = datos.lower_bound(nombre);//el primero que tiene dicho nombre
   map<string,string>::iterator itupper = datos.upper_bound(nombre);//el primero que ya no tiene dicho nombre
