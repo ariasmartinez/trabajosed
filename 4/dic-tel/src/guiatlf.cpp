@@ -52,7 +52,7 @@ pair<map<string,string>::iterator,bool>  Guia_Tlf::insert(pair<string,string> p)
 
 }
 
-void Guia_Tlf::EscribeLetra(const char c){
+void Guia_Tlf::EscribeLetra(const char c)const{
 	map<string,string>::iterator it;
 	bool fin=false, hay=false;
 	for(it= datos.begin(); it!=datos.end() && !fin; it++){
@@ -68,6 +68,25 @@ void Guia_Tlf::EscribeLetra(const char c){
 		cout << "No existen nombres que empiecen por la letra " << c << endl;
 
 }
+
+void Guia_Tlf::EscribePrefijo(const int pre)const{
+	map<string,string>::iterator it;
+	string num;
+	
+	bool hay=false;
+	for(it = datos.begin(); it != datos.end(); it ++){
+		num2 =stoi((*it).second);
+		num = num2/1000000;
+		if(num == pre){
+			hay = true;
+			cout << (*it).first << " " << (*it).second << endl;
+		}
+	}
+	if(!hay){
+		cout << "No existen números con dicho prefijo." << endl;
+	}
+}
+
 
 void Guia_Tlf::borrar(const string &nombre){
   map<string,string>::iterator itlow = datos.lower_bound(nombre);//el primero que tiene dicho nombre

@@ -76,8 +76,13 @@ class Guia_Tlf{
 		    * @brief Escribe los teléfonos de los nombres que empiecen por dicha letra
                     * @param c Letra por la que empiezan los nombres
 	            */
-		    void EscribeLetra(const char c);
-
+		    void EscribeLetra(const char c)const ;
+		    /**
+		    * @brief Escribe los nombres y los télefonos que empiezan por un prefijo
+		    * @param pre prefijo a partir del cual se buscan los teléfonos
+		    * @pre el prefijo pre debe ser un número de tres cifras
+		    */
+		    void EscribePrefijo (const int pre)const;
 		    /**
 		      @brief Borrar un telefono
 		      @param nombre: nombre que se quiere borrar
