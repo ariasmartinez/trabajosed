@@ -18,8 +18,11 @@ Guia_Tlf::Guia_Tlf(const Guia_Tlf & gt){
 
 Guia_Tlf & Guia_Tlf::operator=(const Guia_Tlf & gt){
 
-	// hace falta?
- (*this).datos = gt.datos;
+	if(&gt != this){
+    this->datos = gt.datos;
+  }
+
+  return *this;
 
 }
 
@@ -53,9 +56,9 @@ pair<map<string,string>::iterator,bool>  Guia_Tlf::insert(pair<string,string> p)
 }
 
 void Guia_Tlf::EscribeLetra(const char c)const{
-	map<string,string>::iterator it;
+	map<string,string>::const_iterator it;
 	bool fin=false, hay=false;
-	for(it= datos.begin(); it!=datos.end() && !fin; it++){
+	for(it= datos.cbegin(); it!=datos.cend() && !fin; it++){
 		if((*it).first[0]==c){
 			hay = true;
 			cout << (*it).first << " " << (*it).second << endl;
@@ -70,13 +73,13 @@ void Guia_Tlf::EscribeLetra(const char c)const{
 }
 
 void Guia_Tlf::EscribePrefijo(const int pre)const{
-	map<string,string>::iterator it;
-	string num;
-	
+	map<string,string>::const_iterator it;
+	int num;
+
 	bool hay=false;
-	for(it = datos.begin(); it != datos.end(); it ++){
-		num2 =stoi((*it).second);
-		num = num2/1000000;
+	for(it = datos.cbegin(); it != datos.cend(); it ++){
+		num =stoi((*it).second);
+		num = num/1000000;
 		if(num == pre){
 			hay = true;
 			cout << (*it).first << " " << (*it).second << endl;
