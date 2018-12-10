@@ -2,16 +2,47 @@
 #include <iostream>
 
 using namespace std;
-int main(){
-Guia_Tlf g;
+
+void Menu(){
+  cout << " 1.Introduce 1 para mostrar la guia de telefonos." << endl;
+  cout << " 2.Introduce 2 para guardar la guia en un fichero llamado ./data/salida.txt" << endl;
+  cout << " Introduce 0 para salir." << endl;
+}
+int main(int narg, char* argv[]){
+  Guia_Tlf g;
 
 
-/* Aqui nuestro main */
+  /* Aqui nuestro main */
+  bool cargado;
+  bool salvado;
+  const char* fichero_salida = "./data/salida.txt";
+  cargado = g.cargarDeFichero(argv[1]);
+  if (!cargado){
+    cout << "Error al cargar la primera guia." << endl;
+    exit(-1);
+  }
 
-cout<<"Introduce una guia"<<endl;
-cin >> g;
-cout << "Mostramos la guia:"<< endl;
-cout << g;
+
+  int opcion = 3;
+  while(opcion !=0){
+    switch(opcion){
+      case 1:
+      {
+        cout << g;
+      }
+      break;
+      case 2:
+      {
+        salvado = g.salvarAFichero(fichero_salida);
+        if (!salvado)
+          cout << "Error al salvar la guia." << endl;
+      }
+      break;
+   }
+ }
+
+
+
 
 
 /*

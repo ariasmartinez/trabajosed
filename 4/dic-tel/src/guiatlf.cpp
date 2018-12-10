@@ -2,7 +2,7 @@
 #include <map>
 #include <iostream>
 #include <string>
-
+#include <fstream>
 using namespace std;
 
 istream & operator>>(istream &is,pair<string,string> &d){
@@ -147,4 +147,46 @@ istream & operator>>(istream & is, Guia_Tlf & g){
 	}
 	g=aux;
 	return is;
+}
+
+
+bool Guia_Tlf::cargarDeFichero(const char *fichero){
+
+		bool cond=true;
+		ifstream is;
+
+		is.open(fichero);
+		if(is){
+				is >> (*this);
+				is.close();
+		}
+
+		else{
+				cout << "Error de apertura del fichero " << fichero << endl;
+				cond=false;
+		}
+
+		return cond;
+}
+
+
+
+
+bool Guia_Tlf::salvarAFichero(const char *fichero) {
+       bool cond = true;
+       ofstream os;
+       os.open(fichero);
+       if (os){
+           os << (*this);
+           if (!os){
+               cout << "Error cargando los datos al fichero" << fichero << endl;
+               cond=false;
+           }
+           os.close();
+       }
+       else {
+           cout << "Error de apertura del fichero " << fichero << endl;
+           cond =false;
+       }
+       return cond;
 }

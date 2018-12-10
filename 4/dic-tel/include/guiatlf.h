@@ -1,8 +1,8 @@
 /**
 * @file guiatlf.h
 * @brief Fichero cabecera del TDA Guia_Tlf
-* @authors Celia Arias Martí­nez
-*		Lucía Salamanca López
+* @authors Celia Arias Martï¿½ï¿½nez
+*		Lucï¿½a Salamanca Lï¿½pez
 */
 #ifndef _GUIA_TLF_H
 #define _GUIA_TLF_H
@@ -20,7 +20,7 @@ istream & operator>>(istream &is,pair<string,string> &d);
 
 /**
 * @class Guia_Tlf
-* @brief Una guiaTelf es un contenedor de tipo map formado por una clave de tipo string que representa el nombre del usuario del teléfono y es única para cada uno, y otro string que representa el número de teléfono. Al ser única la clave podemos acceder a cada número de teléfono sabiendo solo el nombre de la persona
+* @brief Una guiaTelf es un contenedor de tipo map formado por una clave de tipo string que representa el nombre del usuario del telï¿½fono y es ï¿½nica para cada uno, y otro string que representa el nï¿½mero de telï¿½fono. Al ser ï¿½nica la clave podemos acceder a cada nï¿½mero de telï¿½fono sabiendo solo el nombre de la persona
 */
 class Guia_Tlf{
 	  private:
@@ -73,14 +73,14 @@ class Guia_Tlf{
 		    pair<map<string,string>::iterator,bool>  insert(pair<string,string> p);
 
 		    /**
-		    * @brief Escribe los teléfonos de los nombres que empiecen por dicha letra
+		    * @brief Escribe los telï¿½fonos de los nombres que empiecen por dicha letra
                     * @param c Letra por la que empiezan los nombres
 	            */
 		    void EscribeLetra(const char c)const ;
 		    /**
-		    * @brief Escribe los nombres y los télefonos que empiezan por un prefijo
-		    * @param pre prefijo a partir del cual se buscan los teléfonos
-		    * @pre el prefijo pre debe ser un número de tres cifras
+		    * @brief Escribe los nombres y los tï¿½lefonos que empiezan por un prefijo
+		    * @param pre prefijo a partir del cual se buscan los telï¿½fonos
+		    * @pre el prefijo pre debe ser un nï¿½mero de tres cifras
 		    */
 		    void EscribePrefijo (const int pre)const;
 		    /**
@@ -154,8 +154,9 @@ class Guia_Tlf{
 
 		    friend istream & operator>>(istream & is, Guia_Tlf & g);
 
+				bool cargarDeFichero(const char *fichero);
 
-
+				bool salvarAFichero(const char *fichero);
 
 };
 #endif
