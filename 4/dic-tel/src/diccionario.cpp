@@ -9,6 +9,8 @@
 #include <string>
 #include <list>
 #include "diccionario.h"
+#include <stdio.h>
+#include <string.h>
 
 
 //todas estas cosas vienen del diccionario.h que lo he separado
@@ -219,6 +221,20 @@ void Diccionario<T,U>::EscribeLetra(const char c){
 	 }
 
 }
+}
+
+template <class T, class U>
+void Diccionario<T,U>::buscarPorSignificado(const char* sig_palabra){
+	typename list<data<T,U> >:: iterator it_dic;
+	for (it_dic = datos.begin(); it_dic != datos.end(); it_dic++){
+		typename list<U> :: iterator it_sig;
+		for (it_sig = (*it_dic).info_asoci.begin(); it_sig != (*it_dic).info_asoci.end(); it_sig++){
+			const char * sig_prov = (*it_sig).c_str();
+			if (strcmp(sig_palabra, sig_prov) == 0){
+				cout << (*it_dic).clave << endl;
+			}
+		}
+	}
 }
 
 //no se si esto va así (he quitado los & porque dijo algo gustavo )

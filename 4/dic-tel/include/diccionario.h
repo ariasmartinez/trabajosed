@@ -141,11 +141,16 @@ class Diccionario{
 		/* Imprime la informacion asociada a claves que empiezan por esa letra*/
 		void EscribeLetra( const char c);
  		//Funciones begin y end asociadas al diccionario*/
+
+		void buscarPorSignificado(const char *palabra);
+
+
 		 typename list<data<T,U> >::iterator  begin();
 		 typename list<data<T,U> >::iterator end();
 
 		 typename list<data<T,U> >::const_iterator  begin()const;
 		 typename list<data<T,U> >::const_iterator end()const;
+
 
 };
 
