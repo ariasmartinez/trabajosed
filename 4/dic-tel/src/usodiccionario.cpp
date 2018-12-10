@@ -9,12 +9,8 @@ using namespace std;
 Hay un fichero ejemplo de prueba: data.txt.Para lanzar el programa con ese fichero se escribe:
                   ./usodiccionario < data.txt
 */
-int main(){
-	Diccionario<string,string> D;
 
-	cin>>D;
-	cout<<D;
-
+void Menu(){
 	cout << "Menu de diccionario: " << endl;
 	cout << "		1.Introduce 1 para buscar una palabra en el diccionario." << endl;
 	cout << "		2.Introduce 2 para aniadir una nueva palabra al diccionario. "<< endl;
@@ -22,9 +18,22 @@ int main(){
 	cout << "		4.Introduce 4 para borrar un significado de una palabra." << endl;
 	cout << "		5.Introduce 5 para buscar todas las palabras que empiecen por una letra." << endl;
 	cout << "		6.Introduce 6 para buscar una palabra por su significado." << endl;
+	cout << "		7.Introduce 7 para mostrar el diccionario." << endl;
+	cout << "		Introduce 0 para salir." << endl;
+
+}
+int main(){
+	Diccionario<string,string> D;
+
+	cout << "Introduce el diccionario: " << endl;
+	cin>>D;
+	cout << "Mostramos el diccionario introducido: " << endl;
+	cout<<D;
+
 
 	int opcion=3;
 	while(opcion!=0){
+		Menu();
 		cin >> opcion;
 		switch (opcion) {
 			case 1:
@@ -57,7 +66,7 @@ int main(){
 					cout << "Dime ahora el significado de la palabra: " << endl;
 					cin.ignore();
 					cin.getline(sig_palabra, 500);
-					cout << sig_palabra << endl;
+
 
 					lista_nueva.push_back(sig_palabra);
 
@@ -110,6 +119,15 @@ int main(){
 					cin.getline(significado, 500);
 					D.buscarPorSignificado(significado);
 				}
+				break;
+			case 7:
+				{
+					cout << D;
+				}
+				break;
+			case 0:
+				exit(0);
+			default:
 				break;
 		}
 }

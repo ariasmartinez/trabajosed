@@ -111,7 +111,10 @@ void Diccionario<T,U>::borrarSignificadoPalabra(const U &s, const T &p){
 		bool esta = false;
 		for(typename list<U>::iterator it2 = (*it).info_asoci.begin(); it2!=(*it).info_asoci.end() && !esta; it2++){
 			if((*it2) == s){
-				(*it).info_asoci.erase(it2);
+				if((*it).info_asoci.size()>1)
+					(*it).info_asoci.erase(it2);
+				else
+					datos.erase(it);
 				esta = true;
 			}
 		}
@@ -226,15 +229,19 @@ void Diccionario<T,U>::EscribeLetra(const char c){
 template <class T, class U>
 void Diccionario<T,U>::buscarPorSignificado(const char* sig_palabra){
 	typename list<data<T,U> >:: iterator it_dic;
+	bool encontrada = false;
 	for (it_dic = datos.begin(); it_dic != datos.end(); it_dic++){
 		typename list<U> :: iterator it_sig;
 		for (it_sig = (*it_dic).info_asoci.begin(); it_sig != (*it_dic).info_asoci.end(); it_sig++){
 			const char * sig_prov = (*it_sig).c_str();
 			if (strcmp(sig_palabra, sig_prov) == 0){
+				encontrada = true;
 				cout << (*it_dic).clave << endl;
 			}
 		}
 	}
+	if (!encontrada)
+		cout << "No existen palabras con ese significado." << endl;
 }
 
 //no se si esto va así (he quitado los & porque dijo algo gustavo )

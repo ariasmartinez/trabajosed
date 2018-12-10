@@ -4,8 +4,17 @@
 using namespace std;
 int main(){
 Guia_Tlf g;
- cout<<"Introduce una guia"<<endl;
- cin>>g;
+
+
+/* Aqui nuestro main */
+
+cout<<"Introduce una guia"<<endl;
+cin >> g;
+cout << "Mostramos la guia:"<< endl;
+cout << g;
+
+
+/*
  //cout<<"La guia insertada "<<g<<endl;
  cin.clear();
 // cout<<"Dime un nombre sobre el que quieres obtener el telefono"<<endl;
@@ -37,6 +46,7 @@ Guia_Tlf g;
 	   cout<<"Dime el nombre que quieres borrar"<<endl;
  }
  */
+ /*
  cin.clear();
  Guia_Tlf otraguia;
  cout<<"Introduce otra guia"<<endl;
@@ -49,6 +59,6 @@ Guia_Tlf g;
 
  cout<<"La diferencia de las dos guias:"<<endl <<dif<<endl;
 
-
+ */
 
 }
