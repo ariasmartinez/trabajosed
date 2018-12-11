@@ -1,3 +1,9 @@
+/**
+* @file guiatlf.cpp
+* @authors Celia Arias Martinez
+*		Lucia Salamanca Lopez
+*/
+
 #include "guiatlf.h"
 #include <map>
 #include <iostream>
@@ -13,7 +19,7 @@ istream & operator>>(istream &is,pair<string,string> &d){
 }
 
 Guia_Tlf::Guia_Tlf(const Guia_Tlf & gt){
-
+	datos = gt.datos;
 }
 
 Guia_Tlf & Guia_Tlf::operator=(const Guia_Tlf & gt){
@@ -21,9 +27,7 @@ Guia_Tlf & Guia_Tlf::operator=(const Guia_Tlf & gt){
 	if(&gt != this){
     this->datos = gt.datos;
   }
-
   return *this;
-
 }
 
 string & Guia_Tlf::operator[](const string &nombre) {
@@ -47,12 +51,9 @@ pair<map<string,string>::iterator,bool>  Guia_Tlf::insert(string nombre, string 
 }
 
 pair<map<string,string>::iterator,bool>  Guia_Tlf::insert(pair<string,string> p){
-
   pair<map<string,string> ::iterator,bool> ret;
-
   ret=datos.insert(p);
   return ret;
-
 }
 
 void Guia_Tlf::EscribeLetra(const char c)const{
@@ -66,7 +67,6 @@ void Guia_Tlf::EscribeLetra(const char c)const{
 		else if((*it).first[0]>c)
 			fin = true;
 	}
-
 	if(!hay)
 		cout << "No existen nombres que empiecen por la letra " << c << endl;
 
@@ -75,7 +75,6 @@ void Guia_Tlf::EscribeLetra(const char c)const{
 void Guia_Tlf::EscribePrefijo(const int pre)const{
 	map<string,string>::const_iterator it;
 	int num;
-
 	bool hay=false;
 	for(it = datos.cbegin(); it != datos.cend(); it ++){
 		num =stoi((*it).second);
@@ -92,14 +91,14 @@ void Guia_Tlf::EscribePrefijo(const int pre)const{
 
 
 void Guia_Tlf::borrar(const string &nombre){
-  map<string,string>::iterator itlow = datos.lower_bound(nombre);//el primero que tiene dicho nombre
-  map<string,string>::iterator itupper = datos.upper_bound(nombre);//el primero que ya no tiene dicho nombre
-  datos.erase(itlow,itupper);//borramos todos aquellos que tiene dicho nombre
+  map<string,string>::iterator itlow = datos.lower_bound(nombre);
+  map<string,string>::iterator itupper = datos.upper_bound(nombre);
+  datos.erase(itlow,itupper);
 }
 
 void Guia_Tlf::borrar(const string &nombre,const string &tlf){
-  map<string,string>::iterator itlow = datos.lower_bound(nombre);//el primero que tiene dicho nombre
-  map<string,string>::iterator itupper = datos.upper_bound(nombre);//el primero que ya no tiene dicho nombre
+  map<string,string>::iterator itlow = datos.lower_bound(nombre);
+  map<string,string>::iterator itupper = datos.upper_bound(nombre);
   map<string,string>::iterator it;
   bool salir =false;
   for (it=itlow; it!=itupper && !salir;++it){
@@ -108,7 +107,6 @@ void Guia_Tlf::borrar(const string &nombre,const string &tlf){
   			salir =true;
 			}
 	}
-
 }
 
 Guia_Tlf Guia_Tlf::operator+(const Guia_Tlf & g){
@@ -141,7 +139,6 @@ ostream & operator<<(ostream & os, Guia_Tlf & g){
 istream & operator>>(istream & is, Guia_Tlf & g){
 	pair<string,string> p;
 	Guia_Tlf aux;
-
 	while (is>>p){
 		aux.insert(p);
 	}
@@ -151,26 +148,19 @@ istream & operator>>(istream & is, Guia_Tlf & g){
 
 
 bool Guia_Tlf::cargarDeFichero(const char *fichero){
-
 		bool cond=true;
 		ifstream is;
-
 		is.open(fichero);
 		if(is){
 				is >> (*this);
 				is.close();
 		}
-
 		else{
 				cout << "Error de apertura del fichero " << fichero << endl;
 				cond=false;
 		}
-
 		return cond;
 }
-
-
-
 
 bool Guia_Tlf::salvarAFichero(const char *fichero) {
        bool cond = true;
