@@ -1,3 +1,9 @@
+/**
+* @file data.cpp
+* @authors Celia Arias Martínez
+*          Lucía Salamanca López
+*/
+
 #include<list>
 #include <string>
 #include"data.h"

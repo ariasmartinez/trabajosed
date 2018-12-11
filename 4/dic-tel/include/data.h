@@ -9,14 +9,15 @@
 #define _DATA_H
 using namespace std;
 template <class T,class U>
+
 /**
-* @brief struct data
+Tipo elemento que define el diccionario. T es el tipo de dato asociado a una clave que
+no se repite (DNI p.ej.) y list<U> es una lista de datos (string p.ej) asociados a la clave
+de tipo T. El diccionario está ordenado de menor a mayor clave.
 */
 struct data{
-    T clave; ///<clave que identifica al elemento
-    list<U> info_asoci; ///<información asociada al elemento
-
-
+    T clave;
+    list<U> info_asoci;
  };
 template <class T, class U>
 /**

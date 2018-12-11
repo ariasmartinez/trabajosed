@@ -11,9 +11,8 @@
 #include "diccionario.h"
 #include <stdio.h>
 #include <string.h>
+#include <fstream>
 
-
-//todas estas cosas vienen del diccionario.h que lo he separado
 
 using namespace std;
 
@@ -72,9 +71,7 @@ bool Diccionario<T,U>::Esta_Clave(const T &p, typename  list<data<T,U> >::iterat
 
 template <class T, class U>
  void Diccionario<T,U>::Insertar(const T& clave,const list<U> &info){
-
 	typename list<data<T,U> >::iterator it;
-
 	 if (!Esta_Clave(clave,it)){
 		  data<T,U> p;
 	          p.clave = clave;
@@ -94,12 +91,10 @@ void Diccionario<T,U>::AddSignificado_Palabra(const U & s ,const T &p){
 		 dat.clave = p;
 		 dat.info_asoci.clear();
 		 dat.info_asoci.push_back(s);
-		 //lo he puesto porque devuelve un iterador
-		datos.insert(it,dat);
+	   datos.insert(it,dat);
 
 	 }
 	 else {
-		 //Insertamos el siginificado al final
 		 (*it).info_asoci.push_back(s);
 	 }
 }
@@ -144,7 +139,6 @@ int Diccionario<T,U>::size()const{
 }
 
 
-//template <class T, class U>
 ostream & operator<<(ostream & os, const Diccionario<string,string> & D){
 
 	list<data<string,string> >::const_iterator it;
@@ -163,11 +157,10 @@ ostream & operator<<(ostream & os, const Diccionario<string,string> & D){
 	return os;
 }
 
-//template <class T, class U>
 istream & operator >>(istream & is,Diccionario<string,string> &D){
 	  int np;
 	  is>>np;
-	  is.ignore();//quitamos \n
+	  is.ignore();
 	  Diccionario<string,string> Daux;
 	  for (int i=0;i<np; i++){
 		    string clave;
@@ -176,13 +169,11 @@ istream & operator >>(istream & is,Diccionario<string,string> &D){
 
 		    int ns;
 		    is>>ns;
-		    is.ignore();//quitamos \n
+		    is.ignore();
 		    list<string>laux;
 		    for (int j=0;j<ns; j++){
 			      string s;
 			      getline(is,s);
-
-			      // cout<<"Significado leido "<<s<<endl;
 			      laux.insert(laux.end(),s);
 		    }
 		    Daux.Insertar(clave,laux);
@@ -243,8 +234,22 @@ void Diccionario<T,U>::buscarPorSignificado(const char* sig_palabra){
 	if (!encontrada)
 		cout << "No existen palabras con ese significado." << endl;
 }
+template <class T, class U>
+bool Diccionario<T,U>::cargarDeFichero(const char *fichero){
+    bool cond=true;
+    ifstream is;
+    is.open(fichero);
+    if(is){
+        is >> (*this);
+        is.close();
+    }
+    else{
+        cout << "Error de apertura del fichero " << fichero << endl;
+        cond=false;
+    }
+    return cond;
+}
 
-//no se si esto va así (he quitado los & porque dijo algo gustavo )
 template <class T, class U>
 typename list<data<T,U> >::iterator  Diccionario<T,U>::begin(){
 	return datos.begin();
@@ -261,8 +266,6 @@ template <class T, class U>
 typename list<data<T,U> >::const_iterator Diccionario<T,U>::end()const {
 	return datos.end();
 }
-
-
 
 
 template class Diccionario<string,string>;

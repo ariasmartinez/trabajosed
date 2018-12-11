@@ -15,14 +15,6 @@
 using namespace std;
 
 
-/*Tipo elemento que define el diccionario. T es el tipo de dato asociado a una clave que
-no se repite (DNI p.ej.) y list<U> es una lista de datos (string p.ej) asociados a la clave
-de tipo T. El diccionario está ordenado de menor a mayor clave.
-*/
-// es decir, es una lista de cosas que tienen la misma clave ( la clave y las cosas pueden ser del tipo que sea) ej: clave banco, en la lista está el banco pa sentarse y el banco del dinero   (no?)
-
-
-
 /*Un diccionario es una lista de datos de los definidos anteriormente. Cuidado porque se
 manejan listas de listas. Se añaden 2 funciones privadas que hacen más facil la implementación
 de algunos operadores o funciones de la parte pública. Copiar copia un diccioario en
@@ -37,7 +29,7 @@ puede hacerse usando iteradores o directamente usando la función assign.
 template <class T,class U>
 class Diccionario{
 	  private:
-		    list<data<T,U> > datos; ///<Tipo elemento que define el diccionario. T es el tipo de dato asociado a una clave que no se repite (DNI p.ej.) y list<U> es una lista de datos (string p.ej) asociados a la clave de tipo T. El diccionario está ordenado de menor a mayor clave.
+		    list<data<T,U> > datos;
 
 
 				/**
@@ -46,14 +38,14 @@ class Diccionario{
 				*/
 	       void Copiar(const Diccionario<T,U>& D){
 
-					//
+
 			   /*typename list<data<T,U> >::const_iterator it_d;
 			   typename list<data<T,U> >::iterator it=this->datos.begin();*/
 
 			      datos.assign(D.datos.begin(),D.datos.end());
-			   /*for (it_d=D.datos.begin(); it_d!=D.datos.end();++it_d,++it){
-				     this->datos.insert(it,*it_d);
 
+				 /*for (it_d=D.datos.begin(); it_d!=D.datos.end();++it_d,++it){
+				     this->datos.insert(it,*it_d);
 			   }*/
 		     }
 				/**
@@ -69,7 +61,7 @@ class Diccionario{
 		* @brief Constructor por defecto, crea un diccionario vacío
 		*/
 		Diccionario();
-		// estaba puesto esto Diccionario():datos(list<data<T,U> >()){}
+
 		/**
 		* @brief Constructor a partir de una lista de datos
 		* @param dat lista de datos a partir de la cual se crea el diccionario
@@ -85,6 +77,11 @@ class Diccionario{
 		*/
  		~Diccionario();
 
+		/**
+			@brief Sobrecarga de operador =.
+			@param D: Diccionario que queremos Copiar
+			@return diccionario copiado
+		*/
 		Diccionario<T,U> & operator=(const Diccionario<T,U> &D);
 
 		/* Busca la clave p en el diccionario. Si está devuelve un iterador a
@@ -105,6 +102,11 @@ class Diccionario{
 		 */
 		void AddSignificado_Palabra(const U & s ,const T &p);
 
+		/**
+			@brief borra un significado concreto de una palabra
+			@param s: significado que queremos borrar
+						 p: palabra que tiene ese significado
+		*/
 		void borrarSignificadoPalabra (const U &s, const T &p);
 
  		/* Devuelve la información (una lista) asociada a una clave p. Podrían
@@ -121,7 +123,6 @@ class Diccionario{
 		/*Operator<<. Obsérvese el uso de 2 tipos diferentes de iteradores. Uno sobre
 		listas de listas y otro sobre listas
 		*/
-		//lo ponemos friend?
 		friend ostream & operator<<(ostream & os, const Diccionario<string,string> & D);
 
 
@@ -134,17 +135,34 @@ class Diccionario{
 
 		friend istream & operator >>(istream & is,Diccionario<string,string> &D);
 
+		/*
+			@brief Escribe todos los significados de una palabra
+			@param l: palabra cuyos significados queremos imprimir
+		*/
 
-		/*Recorre la lista de información asociada a una clave y la imprime*/
 		void EscribeSigni(const list<string>&l);
 
-		/* Imprime la informacion asociada a claves que empiezan por esa letra*/
-		void EscribeLetra( const char c);
- 		//Funciones begin y end asociadas al diccionario*/
+		/**
+			@brief Escribe todos los significados de las palabras que empiezan por una letra determinada
+			@param c: letra por la que empiezan las palabras
+		*/
 
+		void EscribeLetra( const char c);
+
+		/**
+			@brief Busca la palabra que contiene un significado
+			@param palabra: significado que queremos buscar
+		*/
 		void buscarPorSignificado(const char *palabra);
 
+		/**
+		* @brief Carga un diccionario de un archivo
+		* @param fichero Nombre del archivo desde el que se extrae el diccionario
+		* @return true si se ha cargado correctamente, false en caso contrario
+		*/
+		bool cargarDeFichero(const char *fichero);
 
+			//Funciones begin y end asociadas al diccionario*/
 		 typename list<data<T,U> >::iterator  begin();
 		 typename list<data<T,U> >::iterator end();
 
@@ -155,28 +173,5 @@ class Diccionario{
 };
 
 
-/*
-	 TRABAJO: añadir 3 metodos más.
-	 RESUMEN de las cosas que sabemos hacer (no sabemos si están bien implementadas):
-		Copiar diccionarios
-		Borrar diccionarios
-		Crear diccionarios
-		Buscar una clave en el diccionario (y devolver un iterador a esa clave)
-		Insertar un nuevo registro en el diccionario (clave)
-		Insertar un nuevo elemento a la lista de alguna clave (add_significado_palabra)
-		Devolver la lista asociada a una clave
-		Tamaño de diccionario
-		Iterador al principio y final del diccionario
-		>> (leer de un fichero)
-		<< (escribir en fichero)
-		Escribir la lista asociada a una clave
-
-	AÑADIDOS por nosotras (o en proceso):
-		sort ( para  ordenar el diccionario)
-		borrarSignificadoPalabra (para borrar una entrada de una clave)
-		buscarPorPalabra (poner una palabra y que te diga las claves en las que está)
-
-		etc
-*/
 
 #endif

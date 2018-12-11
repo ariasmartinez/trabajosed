@@ -1,3 +1,9 @@
+/**
+* @file usodiccionario.cpp
+* @authors Celia Arias Martínez
+*          Lucía Salamanca López
+*/
+
 #include <iostream>
 #include "diccionario.h"
 #include <string>
@@ -5,10 +11,6 @@
 using namespace std;
 
 
-/*Lee un diccioario e imprime datos asociados a una clave.
-Hay un fichero ejemplo de prueba: data.txt.Para lanzar el programa con ese fichero se escribe:
-                  ./usodiccionario < data.txt
-*/
 
 void Menu(){
 	cout << "Menu de diccionario: " << endl;
@@ -22,21 +24,26 @@ void Menu(){
 	cout << "		Introduce 0 para salir." << endl;
 
 }
-int main(){
+int main(int narg, char* argv[]){
+	bool cargado;
 	Diccionario<string,string> D;
-
-	cout << "Introduce el diccionario: " << endl;
-	cin>>D;
-	cout << "Mostramos el diccionario introducido: " << endl;
-	cout<<D;
-
+	if (narg == 2){
+	 	cargado = D.cargarDeFichero(argv[1]);
+	  	if (!cargado){
+	    		cout << "Error al cargar diccionario" << endl;
+	   		exit(-1);
+	 	}
+	} else {
+		cout << "Error en argumentos: ./bin/usodiccionario fichero.txt" << endl;
+		exit(-1);
+	}
 
 	int opcion=3;
 	while(opcion!=0){
 		Menu();
 		cout << "Escribe opcion:" << endl;
 		cin >> opcion;
-		cout << "has elegido: " << opcion << endl;
+		cout << "Has elegido: " << opcion << endl;
 		switch (opcion) {
 			case 1:
 			  {
@@ -135,18 +142,4 @@ int main(){
 }
 
 
-
-
-
-
-/*	string a;
-
-	cout<<"Introduce una palabra"<<endl;
-	cin>>a;
-
-	list<string>l=D.getInfo_Asoc(a);
-
-	if (l.size()>0){}
-		  D.EscribeSigni(l);
-*/
 }
