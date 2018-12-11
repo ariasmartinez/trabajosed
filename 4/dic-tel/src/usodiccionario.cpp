@@ -34,7 +34,10 @@ int main(){
 	int opcion=3;
 	while(opcion!=0){
 		Menu();
+		cout << "Escribe opcion:" << endl;
 		cin >> opcion;
+		cout << opcion;
+		cout << "has elegido: " << opcion << endl;
 		switch (opcion) {
 			case 1:
 			  {
