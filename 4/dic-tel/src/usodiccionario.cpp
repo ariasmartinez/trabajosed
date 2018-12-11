@@ -36,7 +36,6 @@ int main(){
 		Menu();
 		cout << "Escribe opcion:" << endl;
 		cin >> opcion;
-		cout << opcion;
 		cout << "has elegido: " << opcion << endl;
 		switch (opcion) {
 			case 1:
