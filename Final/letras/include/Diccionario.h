@@ -21,7 +21,7 @@ public:
   /**
   @brief Construye un diccionario vacío.
   **/
-  Diccionario();
+  Diccionario(){}
   /**
   @brief Devuelve el numero de palabras en el diccionario
   **/

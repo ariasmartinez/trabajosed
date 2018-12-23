@@ -16,7 +16,10 @@ private:
   set<Letra> datos;
 
 public:
-
+  /**
+  * @brief Constructor por defecto
+  */
+  ConjuntoLetras(){}
 
 };
 

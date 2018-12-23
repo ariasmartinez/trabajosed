@@ -36,16 +36,16 @@ bool Diccionario::Esta(string palabra){
 ostream & operator<< (ostream & os, const Diccionario &D){
 
   /*for (set<string>::iterator it=datos.begin(); it!=datos.end(); it++)*/
-  iterator it;
-  for (iterator it = datos.begin(); it!=datos.end(); it++)
+  set<string>::iterator it;
+  for (it = D.datos.begin(); it!=D.datos.end(); it++)
     os << (*it) << endl;
 
   return os;
 }
 
-ostream & operator>> (ostream & is, Diccionario &D){
+istream & operator>> (istream & is, Diccionario &D){
   string palabra;
-  if (getline(is, palabra)){
+  while (getline(is,palabra)){
     D.datos.insert(palabra);
   }
   return is;
