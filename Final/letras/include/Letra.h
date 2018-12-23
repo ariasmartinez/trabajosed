@@ -11,15 +11,37 @@ using namespace std;
 
 class Letra{
 private:
-  char caracter; ///< Carácter de la propia letra
-  double cant;  ///< Cantidad de veces que puede aparecer
+  char carac; ///< Carácter de la propia letra
+  int cant;  ///< Cantidad de veces que puede aparecer
   int punt; ///< Puntuación de la letra
 
 public:
   /**
-  @brief Constructor
+  @brief Constructor por defecto
   **/
-  Letra(char car= '\n', double cant=0; punt=0);
+  Letra();
+  /**
+  * @brief Devuelve el carácter de la Letra
+  * @return carácter del objeto
+  */
+  char Caracter(){
+    return carac;
+  }
+  /**
+  * @brief Devuelve la cantidad de veces que aparece la letra
+  * @return cantidad de veces que aparece la letra
+  */
+  int Cantidad(){
+    return cant;
+  }
+
+  /**
+  * @brief Devuelve la puntuación de la letra
+  * @return puntuación de la letra
+  */
+  int Puntuacion(){
+    return punt;
+  }
 
   /**
   @brief Lee de un flujo de entrada un diccionario
