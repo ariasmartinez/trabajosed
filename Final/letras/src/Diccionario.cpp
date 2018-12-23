@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Diccionario.h"
 // #include <set> ¿Hay que ponerlo?
-// #include <string> ¿Hay que ponerlo?
+//#include <string> ¿Hay que ponerlo?
 // #include <vector> ¿Hay que ponerlo?
 
 using namespace std;
@@ -26,7 +26,7 @@ vector<string> Diccionario::PalabrasLongitud(int longitud){
 }
 
 bool Diccionario::Esta(string palabra){
-  bool esta= false;
+  bool esta = false;
   if ((datos.count(palabra))==1)
     esta = true;
 
@@ -34,8 +34,19 @@ bool Diccionario::Esta(string palabra){
 }
 
 ostream & operator<< (ostream & os, const Diccionario &D){
-  for (set<string>::iterator it=datos.begin(); it!=datos.end(); it++)
+
+  /*for (set<string>::iterator it=datos.begin(); it!=datos.end(); it++)*/
+  iterator it;
+  for (iterator it = datos.begin(); it!=datos.end(); it++)
     os << (*it) << endl;
 
   return os;
+}
+
+ostream & operator>> (ostream & is, Diccionario &D){
+  string palabra;
+  if (getline(is, palabra)){
+    D.datos.insert(palabra);
+  }
+  return is;
 }

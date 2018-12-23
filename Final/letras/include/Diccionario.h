@@ -21,7 +21,7 @@ public:
   /**
   @brief Construye un diccionario vacío.
   **/
-  Diccionario()
+  Diccionario();
   /**
   @brief Devuelve el numero de palabras en el diccionario
   **/
@@ -59,20 +59,38 @@ public:
 
   public:
     iterator ();
+    //lo he puesto
+    iterator(set<string>::iterator itb){
+      it = it;
+    }
     string operator *();
     iterator & operator ++();
-    bool operator ==(const iterator &i)
-    bool operator !=(const iterator &i)
+    bool operator ==(const iterator &i);
+    bool operator !=(const iterator &i);
     friend class Diccionario;
   };
 
- iterator begin(){
+ iterator begin()const {
    return datos.begin();
  }
- iterator end(){
+ iterator end() const{
    return datos.end();
  }
 
+ iterator begin() {
+   return datos.begin();
+ }
+
+ //funcionara asi?
+ iterator end() {
+   iterator itb(datos.end());
+   return itb;
+ }
+
 };
+
+/*typename list<data<T,U> >::iterator  Diccionario<T,U>::begin(){
+	return datos.begin();
+}*/
 
 #endif

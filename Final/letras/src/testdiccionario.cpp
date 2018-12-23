@@ -32,11 +32,11 @@ int main(int argc, char * argv[]){
   cout << "Dime la longitud de las palabras que quieres ver"<< endl;
   cin >> longitud;
 
-  vector<string> v = D.(longitud);
+  vector<string> v = D.PalabrasLongitud(longitud);
 
   cout <<"Palabras de Longitud "<< longitud << endl;
 
-  for (unsigned int i=0; i<v.size(): i++)
+  for (unsigned int i=0; i<v.size(); i++)
     cout << v[i] << endl;
 
   string p;

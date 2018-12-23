@@ -24,6 +24,8 @@ public:
   * @brief Devuelve el carácter de la Letra
   * @return carácter del objeto
   */
+  Letra(char caracter, int cantidad, int puntuacion);
+  
   char Caracter(){
     return carac;
   }

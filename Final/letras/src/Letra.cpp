@@ -10,15 +10,30 @@
 using namespace std;
 
 Letra::Letra(){
-  carac = '\n';
+  carac = '';
   cant = 0;
   punt = 0;
 }
 
-istream & operator>>(istream & is, Letra & let){
+Letra::Letra(char caracter, int cantidad, int puntuacion){
+  carac = caracter;
+  cant = cantidad;
+  punt = puntuacion;
+}
 
+istream & operator>>(istream & is, Letra & let){
+  char carac;
+  int cantidad, puntuacion;
+  is >> caracter;
+  is >> cantidad;
+  is >> puntuacion;
+  //no se si esto funciona asi
+  let.carac = caracter;
+  let.punt = puntuacion;
+  let.cant = cantidad;
 }
 
 ostream & operator<<(ostream & os, const Letra &let){
-
+  os << let.carac << " " << let.cant << " " << let.punt << endl;
+  return os;
 }
