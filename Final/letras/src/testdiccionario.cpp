@@ -29,7 +29,7 @@ int main(int argc, char * argv[]){
 
   int longitud;
 
-  cout << "Dime la longitud de las palabras que quieres ver"<< endl;
+  cout << "Dime la longitud de las palabras que quieres ver: "<< endl;
   cin >> longitud;
 
   vector<string> v = D.PalabrasLongitud(longitud);
@@ -41,13 +41,13 @@ int main(int argc, char * argv[]){
 
   string p;
 
-  cout << "Dime una palabra";
+  cout << "Dime una palabra: ";
 
   cin >> p;
 
   if (D.Esta(p))
-    cout << "Sí esa palabra existe";
+    cout << "Sí, esa palabra existe" << endl;
   else
-    cout << "Esa palabra no existe";
+    cout << "Esa palabra no existe" << endl;
 
 }

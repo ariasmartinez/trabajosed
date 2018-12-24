@@ -21,6 +21,11 @@ public:
   */
   ConjuntoLetras(){}
 
+  ConjuntoLetras(set<Letra> dat);
+
+  int size(){
+    return datos.size();
+  }
   /**
   @brief Lee de un flujo de entrada un conjunto de letras
   @param is:flujo de entrada
