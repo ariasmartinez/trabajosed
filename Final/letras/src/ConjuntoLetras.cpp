@@ -1,6 +1,6 @@
 /**
 * @file ConjuntoLetras.cpp
-* @brief Implementación del TDA Letra
+* @brief Implementación del TDA ConjuntoLetras
 * @authors Celia Arias Martínez
 *		       Lucía Salamanca López
 */
@@ -17,7 +17,7 @@ ConjuntoLetras::ConjuntoLetras(set<Letra> dat){
 istream & operator>>(istream & is,ConjuntoLetras & conj){
   char letra;
   while(is.get(letra))
-    conj.insert(letra);
+    conj.datos.insert(letra);
   return is;
 }
 

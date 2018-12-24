@@ -16,7 +16,22 @@ private:
   multiset<char> datos;
 
 public:
+  BolsaLetras(){};
 
+  BolsaLetras(multiset<char> dat);
+
+  int size(){
+    return datos.size();
+  }
+
+  multiset<char> seleccionaAleatorio(int cantidad);
+
+  // tambien habia pensado ponerlo como constructor
+  bool leerDeFichero(const char *fichero);
+
+  friend istream & operator>>(istream & is,BolsaLetras & bolsa);
+
+  friend ostream & operator<<(ostream & os, const BolsaLetras &bolsa);
 };
 
 #endif
