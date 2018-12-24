@@ -7,8 +7,8 @@
 
 //ESTO ES LO QUE VIENE EN EL GUIÓN
 
-int main(int argc, char * argv[]){
-  if(argc!=2){
+int main(int narg, char * argv[]){
+  if(narg!=2){
     cout << "Los parametros son:" << endl;
     cout << "1.-El fichero con las palabras";
 
