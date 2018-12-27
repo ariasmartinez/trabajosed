@@ -56,17 +56,21 @@ int main(int narg, char * argv[]){
     cout << "Error cargando los datos de " << argv[2] << " en ConjuntoLetras." << endl;
     exit(-1);
   }
-  BolsaLetras bolsa_letras_seleccionadas;
-
+  multiset<char> seleccionadas;
+  BolsaLetras bolsa (conj_letras);
 
   while(respuesta == 's'){
     /*
     letras_seleccionadas = bolsa.seleccionaAleatorio(num_letras);
     */
-    // hacer metodo en ConjuntoLetras
-    bolsa_letras_seleccionadas = conj_letras.seleccionaAleatorio(num_letras);
+    // lo hemos hecho en bolsa
+    seleccionadas = bolsa.seleccionaAleatorio(num_letras);
 
-    cout << "Las letras seleccionadas son: " << bolsa_letras_seleccionadas << endl;
+    cout << "Las letras seleccionadas son: " ;
+    for(multiset<char>::iterator it=seleccionadas.begin(); it!=seleccionadas.end(); it++){
+      cout << (*it) << " ";
+    }
+    cout << endl;
     cout << "Dime tu solucion: " << endl;
     cin >> solucion;
     cout << solucion << endl;

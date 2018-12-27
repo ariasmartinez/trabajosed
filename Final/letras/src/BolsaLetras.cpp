@@ -5,9 +5,12 @@
 *		       Lucía Salamanca López
 */
 #include <iostream>
-
+#include <stdlib.h>
+#include <time.h>
 #include <fstream>
 #include "BolsaLetras.h"
+#include "ConjuntoLetras.h"
+
 
 using namespace std;
 
@@ -21,6 +24,30 @@ multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
   }
 }
 */
+
+multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
+	srand(time(NULL));
+	int num;
+	multiset<char>  resultado;
+	for (int i=0; i<cantidad; i++){
+		num= rand()%(datos.size()+1);
+		multiset<char>::iterator it = datos.begin();
+		for (int i=0; i<num; i++)
+			it ++;
+		resultado.insert((*it));
+	}
+
+	return resultado;
+}
+
+
+BolsaLetras::BolsaLetras(const ConjuntoLetras & conjun){
+	for (set<Letra>::iterator it = conjun.begin(); it != conjun.end(); it ++){
+		for (int i=0; i<((*it).Cantidad()); i++){
+			datos.insert((*it).Caracter());
+		}
+	}
+}
 
 bool BolsaLetras::leerDeFichero(const char *fichero){
 		bool cond=true;

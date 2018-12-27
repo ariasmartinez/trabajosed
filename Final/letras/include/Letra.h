@@ -26,14 +26,14 @@ public:
   */
   Letra(char caracter, int cantidad, int puntuacion);
 
-  char Caracter(){
+  char Caracter()const{
     return carac;
   }
   /**
   * @brief Devuelve la cantidad de veces que aparece la letra
   * @return cantidad de veces que aparece la letra
   */
-  int Cantidad(){
+  int Cantidad()const{
     return cant;
   }
 
@@ -41,7 +41,7 @@ public:
   * @brief Devuelve la puntuación de la letra
   * @return puntuación de la letra
   */
-  int Puntuacion(){
+  int Puntuacion()const{
     return punt;
   }
 

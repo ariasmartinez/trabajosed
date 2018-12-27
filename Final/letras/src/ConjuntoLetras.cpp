@@ -69,8 +69,23 @@ bool ConjuntoLetras::leerDeFichero(const char *fichero){
 
 //estaria bien cogerlas con la probabilidad proporcional a la cantidad que hay (COnjunto de letras es un set ;(
 //tambien tener en cuenta que los elementos de COnjunto de letras son Letras y los de bolsa char
-BolsaLetras ConjuntoLetras::seleccionaAleatorio(int numero){
-  BolsaLetras bolsa;
+/*  BolsaLetras bolsa;
   multiset<char> multiset_bolsa;
   return bolsa;
+}
+*/
+typename set<Letra>::iterator ConjuntoLetras::begin(){
+  return datos.begin();
+}
+
+typename set<Letra>::iterator ConjuntoLetras::end(){
+  return datos.end();
+}
+
+typename set<Letra>::const_iterator ConjuntoLetras::begin() const{
+  return datos.begin();
+}
+
+typename set<Letra>::const_iterator ConjuntoLetras::end() const{
+  return datos.end();
 }
