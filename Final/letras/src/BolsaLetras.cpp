@@ -5,12 +5,13 @@
 *		       Lucía Salamanca López
 */
 #include <iostream>
-#include <ctime>
+
+#include <fstream>
 #include "BolsaLetras.h"
 
 using namespace std;
 
-/// AHHHHHHHHH
+/* Si conseguimos hacer el de conjuntoletras no hace falta este
 multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
   srand(time(NULL));
   multiset<char> aleat;
@@ -19,7 +20,7 @@ multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
     datos.insert(rand()%(datos.size()-1));
   }
 }
-
+*/
 
 bool BolsaLetras::leerDeFichero(const char *fichero){
 		bool cond=true;
@@ -38,7 +39,7 @@ bool BolsaLetras::leerDeFichero(const char *fichero){
 }
 
 ostream & operator<<(ostream & os, const BolsaLetras &bolsa){
-  multiset<char> iterator:: it;
+  multiset<char> ::iterator it;
   for (it = bolsa.datos.begin(); it != bolsa.datos.end(); it++)
     os << (*it) << endl;
   return os;

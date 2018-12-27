@@ -7,7 +7,7 @@
 #ifndef _BolsaLetras_h
 #define _BolsaLetras_h
 #include <set>
-#include "ConjuntoLetras.h"
+
 
 using namespace std;
 
@@ -24,7 +24,7 @@ public:
     return datos.size();
   }
 
-  multiset<char> seleccionaAleatorio(int cantidad);
+//  multiset<char> seleccionaAleatorio(int cantidad);
 
   // tambien habia pensado ponerlo como constructor
   bool leerDeFichero(const char *fichero);

@@ -25,7 +25,7 @@ public:
   * @return carácter del objeto
   */
   Letra(char caracter, int cantidad, int puntuacion);
-  
+
   char Caracter(){
     return carac;
   }
@@ -45,6 +45,19 @@ public:
     return punt;
   }
 
+  void setCaracter(char caract){
+    carac = caract;
+  }
+
+  void setCantidad(int canti){
+    cant = canti;
+  }
+
+  void setPuntuacion(int puntu){
+    punt = puntu;
+  }
+
+  bool operator<(const Letra & letra_b) const;
   /**
   @brief Lee de un flujo de entrada un diccionario
   @param is:flujo de entrada

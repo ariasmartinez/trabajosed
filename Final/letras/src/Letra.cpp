@@ -9,8 +9,9 @@
 
 using namespace std;
 
+//pongo a porque '' daba error
 Letra::Letra(){
-  carac = '';
+  carac = 'a';
   cant = 0;
   punt = 0;
 }
@@ -21,8 +22,15 @@ Letra::Letra(char caracter, int cantidad, int puntuacion){
   punt = puntuacion;
 }
 
+bool Letra::operator<(const Letra & letra_b) const{
+  if (carac <= letra_b.carac)
+    return true;
+  else
+    return false;
+}
+
 istream & operator>>(istream & is, Letra & let){
-  char carac;
+  char caracter;
   int cantidad, puntuacion;
   is >> caracter;
   is >> cantidad;
@@ -31,6 +39,8 @@ istream & operator>>(istream & is, Letra & let){
   let.carac = caracter;
   let.punt = puntuacion;
   let.cant = cantidad;
+
+  return is;
 }
 
 ostream & operator<<(ostream & os, const Letra &let){

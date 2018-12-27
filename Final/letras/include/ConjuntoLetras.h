@@ -8,6 +8,8 @@
 #define _ConjuntoLetras_h
 #include <set>
 #include "Letra.h"
+#include "BolsaLetras.h"
+
 
 using namespace std;
 
@@ -28,6 +30,8 @@ public:
   }
 
   bool leerDeFichero(const char *fichero);
+
+  BolsaLetras seleccionaAleatorio(int numero);
   /**
   @brief Lee de un flujo de entrada un conjunto de letras
   @param is:flujo de entrada
