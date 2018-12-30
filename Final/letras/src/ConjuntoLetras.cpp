@@ -21,25 +21,72 @@ ConjuntoLetras::ConjuntoLetras(set<Letra> dat){
 
 istream & operator>>(istream & is,ConjuntoLetras & conj){
   Letra letra_aux;
-  char char_letra;
+  /*char char_letra;
   char cantidad_char;
   int cantidad;
   char puntuacion_char;
   int puntuacion;
+  char basura;
   while(is.get(char_letra)){
-    //se puede hacer get de int ??
+    is.get(basura);
     is.get(cantidad_char);
+    is.get(basura);
     is.get(puntuacion_char);
+    //is.get(basura);
     cantidad = cantidad_char +'0';
     puntuacion = puntuacion_char +'0';
+    cout << "aniadimos letra " << char_letra << endl;
+    cout << "aniadimis cantidad_char " << cantidad_char << endl;
+    cout << "aniadimos puntuacion_char "<< puntuacion_char << endl;
     letra_aux.setCaracter(char_letra);
     letra_aux.setCantidad(cantidad);
     letra_aux.setPuntuacion(puntuacion);
     //Letra letra_aux(char_letra, cantidad, puntuacion);
-    cout << letra_aux << endl;
+    cout << "conjuntoletra::>>::vamos a anidir " << letra_aux << endl;
+    conj.datos.insert(letra_aux);
+  }*/
+  /*
+  string linea;
+  char char_letra;
+  char canti;
+  char punt;
+  int puntuacion;
+  int cantidad;
+  int nivel = 0;
+  string aux;
+  getline(is, linea);
+  while(!is.eof()){
+    for (int i=0; i<linea.size(); i++){
+      if(linea[i] != " "){
+        aux = linea[i];
+      }
+      else{
+        if (nivel == 0){
+          char_letra = aux;
+          aux.clear();
+          nivel++;
+        }
+        else if(nivel == 1){
+          canti = aux;
+          aux.clear();
+          nivel++;
+        }
+        else if (nivel == 2){
+          punt = aux;
+          aux.clear();
+          nivel = 0;
+        }
+      }
+    }
+    cantidad = canti +'0';
+    puntuacion = punt +'0';
+    letra_aux.setCaracter(char_letra);
+    letra_aux.setCantidad(cantidad);
+    letra_aux.setPuntuacion(puntuacion);
     conj.datos.insert(letra_aux);
   }
-  return is;
+
+  return is;*/
 }
 
 
