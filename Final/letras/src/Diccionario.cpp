@@ -50,3 +50,25 @@ istream & operator>> (istream & is, Diccionario &D){
   }
   return is;
 }
+
+
+Diccionario::iterator::iterator (){
+  //Ni idea
+}
+
+string Diccionario::iterator::operator *(){
+  return (*it);
+}
+
+Diccionario::iterator & Diccionario::iterator::operator ++(){
+  it = it++;
+  return *(this);
+}
+
+bool Diccionario::iterator::operator ==(const iterator &i){
+  return (i.it == it);
+}
+
+bool Diccionario::iterator::operator !=(const iterator &i){
+  return i.it != it;
+}

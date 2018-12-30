@@ -56,6 +56,7 @@ int main(int narg, char * argv[]){
     cout << "Error cargando los datos de " << argv[2] << " en ConjuntoLetras." << endl;
     exit(-1);
   }
+  cout << conj_letras;
   multiset<char> seleccionadas;
   BolsaLetras bolsa (conj_letras);
 
@@ -76,7 +77,7 @@ int main(int narg, char * argv[]){
     cout << solucion << endl;
     // Calcular la puntuacion (depende de la modalidad)
 
-    if (modalidad == 'L'){
+   /* if (modalidad == 'L'){
       // cargar los datos de diccionario en un arbol segun la longitud
     }
     else if (modalidad == 'P'){
@@ -89,7 +90,7 @@ int main(int narg, char * argv[]){
     //Calcular posibles soluciones y sus puntuaciones
 
     // Comparar si la solucion personal es correcta y comparar con la mejor, ver si ha ganado
-
+*/
 
     cout << "¿Quieres seguir jugando? (responde s para sí)" << endl;
     cin >> respuesta;

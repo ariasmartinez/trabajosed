@@ -16,7 +16,7 @@ using namespace std;
  * @class Node
  * @brief Clase que representa un nodo del arbol.
  */
-class Node{  
+class Node{
 private:
   /**
    * @brief El objeto que empleamos para ordenar los nodos cuando se insertan en un Node_Set.
@@ -32,8 +32,9 @@ private:
   };
 
   typedef multiset<Node*, NodeComparator> Node_Set; /**< Tipo de objeto que es un conjunto de punteros a nodos.*/
-  
-  string label; /**< La etiqueta del nodo.*/
+
+  //he cambiado string label por char label no me mates (puede salir muy mal)
+  char label; /**< La etiqueta del nodo.*/
   int score; /**< La puntuación de este nodo.*/
   Node* parent; /**< El padre de esto nodo.*/
   Node_Set children; /**< Los hijos de este nodo.*/
@@ -47,7 +48,7 @@ private:
 public:
   typedef Node_Set::iterator iterator; /**< Tipo para un iterador sobre un Node_Set*/
   typedef Node_Set::const_iterator const_iterator; /**< Tipo para un iterador constante sobre un Node_Set*/
-  
+
   /**
    * @brief Constructor por defecto.
    */
@@ -58,13 +59,13 @@ public:
    * @param label: La etiqueta del nodo.
    * @param score: La puntuacion del nodo.
    */
-  Node(string label, int score = 0);
+  Node(char label, int score = 0);
 
   /**
    * @brief Obtener la etiqueta del nodo.
    * @return La etiqueta del nodo.
    */
-  string get_label() const;
+  char get_label() const;
 
   /**
    * @brief Obtener la puntuacion del nodo.
@@ -89,7 +90,7 @@ public:
    * @param label: La etiqueta por la que buscar.
    * @return El hijo con dicha etiqueta si existe.
    */
-  Node* child(string label);
+  Node* child(char label);
 
   /**
    * @brief Anade un hijo al nodo.
@@ -154,6 +155,10 @@ public:
    * @return El flujo donde se lee.
    */
   friend ostream& operator<<(ostream &os, const Node &node);
+
+  void aniadirPalabra(string palabra);
+
+  ostream& escribeNode(ostream &os);
 };
 
 #endif

@@ -36,7 +36,7 @@ istream & operator>>(istream & is,ConjuntoLetras & conj){
     letra_aux.setCantidad(cantidad);
     letra_aux.setPuntuacion(puntuacion);
     //Letra letra_aux(char_letra, cantidad, puntuacion);
-
+    cout << letra_aux << endl;
     conj.datos.insert(letra_aux);
   }
   return is;
