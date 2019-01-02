@@ -18,9 +18,19 @@ ConjuntoLetras::ConjuntoLetras(set<Letra> dat){
   datos = dat;
 }
 
+istream & operator >> (istream & is, ConjuntoLetras & conj){
+	Letra let;
 
-istream & operator>>(istream & is,ConjuntoLetras & conj){
-  Letra letra_aux;
+	while(is){
+    is >> let;
+    conj.datos.insert(let);
+  }
+
+  return is;
+}
+
+//istream & operator>>(istream & is,ConjuntoLetras & conj){
+  //Letra letra_aux;
   /*char char_letra;
   char cantidad_char;
   int cantidad;
@@ -87,7 +97,7 @@ istream & operator>>(istream & is,ConjuntoLetras & conj){
   }
 
   return is;*/
-}
+//}
 
 
 

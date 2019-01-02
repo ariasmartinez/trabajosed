@@ -28,14 +28,14 @@ ostream& operator<<(ostream &os, const Tree &tree){
 
 
 Tree::Tree(){
-  //jdsksdfj
+  // no habría que ponerlo no?
 }
 
 
-
+// Este no lo veo
 Tree::Tree(const Diccionario &d){
   Diccionario::iterator it_dicc;
-  Node root('r');
+  Node root('r'); // la r xq?
 
   // root children ?? //funcion it_dicc ??
   for (it_dicc = d.begin(); it_dicc != d.end(); ++it_dicc){

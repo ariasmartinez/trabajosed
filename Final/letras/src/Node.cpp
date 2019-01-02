@@ -17,7 +17,7 @@ void Node::update_child(Node* child){
   Node::Node_Set::const_iterator it;
   int new_score = child->score;
 
-  for (it = children.begin(); it != children.end(); it++) //TODO mejorar el Nodo para que esta busqueda sea O(1) (uso de un unordered_set que funciona con una tabla hash).
+  for (it = children.begin(); it != children.end(); it++) // TODO mejorar el Nodo para que esta busqueda sea O(1) (uso de un unordered_set que funciona con una tabla hash).
     if ((*it)->label == child->label)
       break;
 
@@ -30,9 +30,10 @@ void Node::update_child(Node* child){
 
 
 Node::Node(){
-  label = 'a'; //puede que de problemas
+  label = ' '; //puede que de problemas
   score = 0;
   parent = NULL;
+  children.clear(); //con esto por ahora no peta pero si pasa algo es esto
   //children = NULL; //?¿
 }
 
@@ -40,6 +41,7 @@ Node::Node(char label, int score){
   label = label;
   parent = NULL;
   score = score;
+  children.clear(); //con esto por ahora no peta pero si pasa algo es esto
   //children = NULL //?¿
 }
 
@@ -87,7 +89,7 @@ Node* Node::child(char label){
  */
 void Node::add_child(Node* child){
   children.insert(child);
-  child->parent = this; // no se si iria con * o sin el
+  child->parent = this; // no se si iria con * o sin el, creo que es así
 }
 
 /**
@@ -96,9 +98,9 @@ void Node::add_child(Node* child){
  */
 void Node::set_parent(Node* parent){
   parent = parent;
-  //hay que hacer que padre apunte a hijo ?
-  //parent.children.insert(this);
-//  parent->children = (*this); //¿?
+  //hay que hacer que padre apunte a hijo ? yo Lucía creo que sí
+  parent->children.insert(this);
+  //parent->children = (*this); //¿?
 }
 
 /**
@@ -132,7 +134,7 @@ int Node::n_children() const{
  * @return El iterador apuntando al comienzo de los hijos del nodo.
  */
 Node::iterator Node::begin(){
-  return children.begin();  // funcionara?
+  return children.begin();  // funcionara? supongamos
 }
 
 /**
@@ -147,7 +149,7 @@ Node::iterator Node::end(){
    * @return El iterador constante apuntando al comienzo de los hijos del nodo.
    */
 Node::const_iterator Node::cbegin() const{
-  return children.begin(); //o .cbegin() ??
+  return children.begin(); //o .cbegin() ?? así está bien
 }
 
 /**
@@ -155,25 +157,28 @@ Node::const_iterator Node::cbegin() const{
  * @return El iterador constante apuntando al final de los hijos del nodo.
  */
 Node::const_iterator Node::cend() const{
-  return children.end(); //?¿
+  return children.end(); //?¿ yes
 }
 
 
-/*ostream& Node::escribeNode(ostream &os){
+void Node::escribeNode(ostream &os) const{
   os << label;
   for (iterator it = children.begin(); it != children.end(); it++ ){
     (*(*it)).escribeNode(os);
   }
-  return os;
-}*/
+
+}
 // weuuuu
+
+// L: Así me compila
 ostream& operator<<(ostream &os, const Node &node){
-  os << node.label << endl;
+  node.escribeNode(os);
   return os;
   //¿hay que sacar los hijos tambn?
   //return node.escribeNode(os); //puede petar :)
 }
 
+// Este método no debería ir en el arbol?
 
 
 void Node::aniadirPalabra(string palabra){

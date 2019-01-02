@@ -36,7 +36,7 @@ private:
   //he cambiado string label por char label no me mates (puede salir muy mal)
   char label; /**< La etiqueta del nodo.*/
   int score; /**< La puntuación de este nodo.*/
-  Node* parent; /**< El padre de esto nodo.*/
+  Node* parent; /**< El padre de este nodo.*/
   Node_Set children; /**< Los hijos de este nodo.*/
 
   /**
@@ -158,7 +158,7 @@ public:
 
   void aniadirPalabra(string palabra);
 
-  ostream& escribeNode(ostream &os);
+  void escribeNode(ostream &os) const;
 };
 
 #endif
