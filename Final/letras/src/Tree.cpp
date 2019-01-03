@@ -47,7 +47,43 @@ Tree::Tree(const Diccionario &d){
     return root;
   }
 
-
+// Le metemos siempre primero un NULL para saber cuando llega al final?
   Tree::tree_iterator::tree_iterator(){
-    //inicializar pila
+    node_stack.clear();
+    node_stack.push(NULL);
+  }
+
+  bool Tree::tree_iterator::operator==(const tree_iterator &it){
+    return (this->node_stack.top() == it.node_stack.top());
+  }
+
+  bool Tree::tree_iterator::operator!=(const tree_iterator &it){
+    return(this->node_stack.top() != it.node_stack.top());
+  }
+
+  // no se si los iteradores habrá que ponerlos constantes, no los voy a poner si da problemas es aquí
+  tree_iterator& Tree::tree_iterator::operator=(const tree_iterator &i){
+    // Pensaba hacerlo con el constructor del nodo pero es que no se que coño hay que hacer la verdad
+    Node * nodo = i.top();
+
+  }
+
+  Node* Tree::tree_iterator::operator*(){
+
+  }
+
+  tree_iterator& Tree::tree_iterator::operator++(){
+
+  }
+
+  tree_iterator& Tree::tree_iterator::operator--(){
+
+  }
+
+  tree_iterator Tree::begin(){
+
+  }
+
+  tree_iterator Tree::end(){
+
   }
