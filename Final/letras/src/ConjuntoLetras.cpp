@@ -29,77 +29,6 @@ istream & operator >> (istream & is, ConjuntoLetras & conj){
   return is;
 }
 
-//istream & operator>>(istream & is,ConjuntoLetras & conj){
-  //Letra letra_aux;
-  /*char char_letra;
-  char cantidad_char;
-  int cantidad;
-  char puntuacion_char;
-  int puntuacion;
-  char basura;
-  while(is.get(char_letra)){
-    is.get(basura);
-    is.get(cantidad_char);
-    is.get(basura);
-    is.get(puntuacion_char);
-    //is.get(basura);
-    cantidad = cantidad_char +'0';
-    puntuacion = puntuacion_char +'0';
-    cout << "aniadimos letra " << char_letra << endl;
-    cout << "aniadimis cantidad_char " << cantidad_char << endl;
-    cout << "aniadimos puntuacion_char "<< puntuacion_char << endl;
-    letra_aux.setCaracter(char_letra);
-    letra_aux.setCantidad(cantidad);
-    letra_aux.setPuntuacion(puntuacion);
-    //Letra letra_aux(char_letra, cantidad, puntuacion);
-    cout << "conjuntoletra::>>::vamos a anidir " << letra_aux << endl;
-    conj.datos.insert(letra_aux);
-  }*/
-  /*
-  string linea;
-  char char_letra;
-  char canti;
-  char punt;
-  int puntuacion;
-  int cantidad;
-  int nivel = 0;
-  string aux;
-  getline(is, linea);
-  while(!is.eof()){
-    for (int i=0; i<linea.size(); i++){
-      if(linea[i] != " "){
-        aux = linea[i];
-      }
-      else{
-        if (nivel == 0){
-          char_letra = aux;
-          aux.clear();
-          nivel++;
-        }
-        else if(nivel == 1){
-          canti = aux;
-          aux.clear();
-          nivel++;
-        }
-        else if (nivel == 2){
-          punt = aux;
-          aux.clear();
-          nivel = 0;
-        }
-      }
-    }
-    cantidad = canti +'0';
-    puntuacion = punt +'0';
-    letra_aux.setCaracter(char_letra);
-    letra_aux.setCantidad(cantidad);
-    letra_aux.setPuntuacion(puntuacion);
-    conj.datos.insert(letra_aux);
-  }
-
-  return is;*/
-//}
-
-
 
 ostream & operator<<(ostream & os, const ConjuntoLetras &conj){
   set<Letra> ::iterator it;
@@ -131,6 +60,30 @@ bool ConjuntoLetras::leerDeFichero(const char *fichero){
   return bolsa;
 }
 */
+
+int ConjuntoLetras::Puntuacion(string palabra){
+  int puntuacion=0;
+  for(int i=0; i<palabra.size(); i++){
+    set<Letra>::iterator it =BuscarLetra(palabra[i]);
+    if(it!=end()){
+      puntuacion+= (*it).Puntuacion();
+    }
+    else
+      return 0;
+  }
+  return puntuacion;
+
+}
+
+set<Letra>::iterator  ConjuntoLetras::BuscarLetra(char letra){
+  for(set<Letra>::iterator it = begin(); it!= end() && (*it).Caracter() <= letra ; it ++){
+    if((*it).Caracter()==letra)
+      return it;
+  }
+  //Esto no se si puede ser la verdad supongo que si
+  return end();
+}
+
 typename set<Letra>::iterator ConjuntoLetras::begin(){
   return datos.begin();
 }
@@ -145,4 +98,33 @@ typename set<Letra>::const_iterator ConjuntoLetras::begin() const{
 
 typename set<Letra>::const_iterator ConjuntoLetras::end() const{
   return datos.end();
+}
+
+pair<int,set<string> > ConjuntoLetras::MejoresPalabras (const set<string> & palabras, char modo){
+  pair<int, set<string> > resultado;
+  resultado.first = 0;
+  if (modo=='P'){
+    for(set<string>::iterator it= palabras.begin(); it!=palabras.end(); it++){
+      if (Puntuacion(*it)>resultado.first){
+        resultado.second.clear();
+        resultado.second.insert((*it));
+        resultado.first=Puntuacion(*it);
+      }
+      else if(Puntuacion(*it)==resultado.first)
+        resultado.second.insert((*it));
+    }
+  }
+  else {
+    for(set<string>::iterator it= palabras.begin(); it!=palabras.end(); it++){
+      if ((*it).size()>resultado.first){
+        resultado.second.clear();
+        resultado.second.insert((*it));
+        resultado.first=(*it).size();
+      }
+      else if((*it).size()==resultado.first)
+        resultado.second.insert((*it));
+    }
+  }
+
+  return resultado;
 }

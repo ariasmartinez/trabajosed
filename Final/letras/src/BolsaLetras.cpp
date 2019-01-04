@@ -29,12 +29,19 @@ multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
 	srand(time(NULL));
 	int num;
 	multiset<char>  resultado;
+	set<int> numeros;
 	for (int i=0; i<cantidad; i++){
-		num = rand()%(datos.size()+1);
+		num = rand()%(datos.size());
 		multiset<char>::iterator it = datos.begin();
-		for (int i=0; i<num; i++)
-			it ++;
-		resultado.insert((*it));
+		if (numeros.count(num)==0){
+			for (int i=0; i<num; i++)
+				it ++;
+			resultado.insert((*it));
+			numeros.insert(num);
+		}
+		else
+			i--;
+
 	}
 
 	return resultado;
@@ -68,7 +75,6 @@ bool BolsaLetras::leerDeFichero(const char *fichero){
 ostream & operator<<(ostream & os, const BolsaLetras &bolsa){
   multiset<char> ::iterator it;
   for (it = bolsa.datos.begin(); it != bolsa.datos.end(); it++){
-		//cout << (*it) << endl;
     os << (*it) << endl;
 	}
   return os;

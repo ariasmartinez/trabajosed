@@ -27,7 +27,6 @@ public:
 
   multiset<char> seleccionaAleatorio(int cantidad);
 
-  // tambien habia pensado ponerlo como constructor
 
   BolsaLetras(const ConjuntoLetras & conjun);
   bool leerDeFichero(const char *fichero);

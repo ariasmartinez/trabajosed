@@ -7,7 +7,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-
+// No nos van a contratar en google eso lo tenemos claro
 //parametros :  fich_diccionario     letras.txt(letras con la cantidad y los puntos)     nºletras     modalidad del juego(L o P)
 
 
@@ -26,32 +26,23 @@ int main(int narg, char * argv[]){
   cout << "Cargando diccionario...." << endl;
   fich_diccionario >> D;
   cout << "Leido el diccionario..."<< endl;
-  cout << D;
 
-  /* ¿no sirve no?
-  ifstream fich_letras(argv[2]);
-  if (!fich_letras){
-    cout << "No se ha podido abrir el fichero " << argv[2] << endl;
-    return 0;
-  }
-  */
+
   int num_letras = atoi(argv[3]);
   //¿funciona?
-  char modalidad = atoi(argv[4]);
+  string mod = argv[4];
+  char modalidad = mod[0];
 
+  if(modalidad != 'L' && modalidad != 'P'){
+    cerr << "Error en la modalidad" << endl;
+    return -1;
+  }
 
-  /*
-  BolsaLetras bolsa;
-  multiset<char> letras_seleccionadas;
-  string solucion;
-  char respuesta = 's';
-  bolsa.leerDeFichero(fich_letras);
-  */
 
   ConjuntoLetras conj_letras;
   string solucion;
   char respuesta = 's';
-  //mirar metodo leerdefichero porque puede fallar
+  
   if (conj_letras.leerDeFichero(argv[2]) != true){
     cout << "Error cargando los datos de " << argv[2] << " en ConjuntoLetras." << endl;
     exit(-1);
@@ -59,12 +50,11 @@ int main(int narg, char * argv[]){
   cout << conj_letras;
   multiset<char> seleccionadas;
   BolsaLetras bolsa (conj_letras);
+  cout << "Vamos a mostrar la bolsa que hemos creado en el letras.cpp" << endl;
+  cout << bolsa << endl;
 
   while(respuesta == 's'){
-    /*
-    letras_seleccionadas = bolsa.seleccionaAleatorio(num_letras);
-    */
-    // lo hemos hecho en bolsa
+
     seleccionadas = bolsa.seleccionaAleatorio(num_letras);
 
     cout << "Las letras seleccionadas son: " ;
@@ -74,23 +64,25 @@ int main(int narg, char * argv[]){
     cout << endl;
     cout << "Dime tu solucion: " << endl;
     cin >> solucion;
-    cout << solucion << endl;
-    // Calcular la puntuacion (depende de la modalidad)
+    cout << "Tu solución es: " << solucion << endl;
+    if(!D.Esta(solucion))
+      cout << "Dicha palabra no se encuentra en el diccionario" << endl;
+    else if(modalidad == 'L')
+      cout << "Tu puntuación es de: " << solucion.size() << " puntos" << endl;
+    else
+      cout << "Tu puntuación es de: " << conj_letras.Puntuacion(solucion) << " puntos" << endl;
 
-   /* if (modalidad == 'L'){
-      // cargar los datos de diccionario en un arbol segun la longitud
-    }
-    else if (modalidad == 'P'){
-      // cargar los datos de diccionario en un arbol segun la puntuacion (hay que tener en cuenta ConjuntoLetras)
-    }
-    else {
-      cout << "Has introducido mal la modalidad, los valores son L o P." << endl;
-      exit(0);
-    }
-    //Calcular posibles soluciones y sus puntuaciones
 
-    // Comparar si la solucion personal es correcta y comparar con la mejor, ver si ha ganado
-*/
+    cout << endl << "¡Ahora me toca a mi! :)" << endl;
+    cout << "Mis soluciones son: " << endl;
+    pair<int, set<string> > soluciones = conj_letras.MejoresPalabras(D.SacarPalabras(seleccionadas), modalidad);
+    for (set<string>::iterator it= soluciones.second.begin(); it != soluciones.second.end(); it++){
+      cout << (*it) << endl;
+    }
+
+    cout << "Con una puntuación de: " << soluciones.first << endl;
+
+
 
     cout << "¿Quieres seguir jugando? (responde s para sí)" << endl;
     cin >> respuesta;

@@ -52,6 +52,12 @@ public:
   @return el flujo de salida
   **/
   friend ostream & operator<<(ostream & os, const Diccionario  &D);
+  /**
+  * @brief Devuelve el conjunto de las palabras válidas según unas letras determinadas
+  * @param seleccionadas Letras que podemos utilizar para formar las palabras
+  * @return Devuelve un set con las palabras válidas
+  */
+  set<string> SacarPalabras(const multiset<char> & seleccionadas);
 
   class iterator{
   private:
@@ -88,6 +94,7 @@ public:
  }
 
 };
+
 
 /*typename list<data<T,U> >::iterator  Diccionario<T,U>::begin(){
 	return datos.begin();

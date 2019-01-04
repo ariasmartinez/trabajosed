@@ -13,8 +13,8 @@ all: $(bin)/testdiccionario $(bin)/letras
 $(bin)/testdiccionario: $(obj)/testdiccionario.o $(obj)/Diccionario.o
 	g++  $(obj)/testdiccionario.o  $(obj)/Diccionario.o -o $(bin)/testdiccionario
 
-$(bin)/letras: $(obj)/letras.o $(obj)/Diccionario.o $(obj)/BolsaLetras.o $(obj)/ConjuntoLetras.o $(obj)/Letra.o 
-	g++  $(obj)/letras.o  $(obj)/Diccionario.o $(obj)/BolsaLetras.o $(obj)/ConjuntoLetras.o $(obj)/Letra.o -o $(bin)/letras
+$(bin)/letras: $(obj)/letras.o $(obj)/Diccionario.o $(obj)/BolsaLetras.o $(obj)/ConjuntoLetras.o $(obj)/Letra.o $(obj)/Node.o $(obj)/Tree.o
+	g++  $(obj)/letras.o  $(obj)/Diccionario.o $(obj)/BolsaLetras.o $(obj)/ConjuntoLetras.o $(obj)/Letra.o $(obj)/Node.o $(obj)/Tree.o -o $(bin)/letras
 
 $(obj)/testdiccionario.o: $(inc)/Diccionario.h $(src)/testdiccionario.cpp
 	g++ $(CPPFLAGS) $(src)/testdiccionario.cpp -o $(obj)/testdiccionario.o
@@ -34,7 +34,11 @@ $(obj)/ConjuntoLetras.o: $(inc)/ConjuntoLetras.h $(src)/ConjuntoLetras.cpp  $(in
 $(obj)/BolsaLetras.o: $(inc)/BolsaLetras.h $(src)/BolsaLetras.cpp 
 	g++ $(CPPFLAGS) $(src)/BolsaLetras.cpp -o $(obj)/BolsaLetras.o
 
+$(obj)/Tree.o: $(inc)/Tree.h $(src)/Tree.cpp $(inc)/Node.h $(inc)/Diccionario.h
+	g++ $(CPPFLAGS) $(src)/Tree.cpp -o $(obj)/Tree.o
 
+$(obj)/Node.o: $(inc)/Node.h $(src)/Node.cpp
+	g++ $(CPPFLAGS) $(src)/Node.cpp -o $(obj)/Node.o
 
 documentacion:
 	doxygen doc/doxys/Doxyfile

@@ -6,6 +6,7 @@
 */
 #include <iostream>
 #include "Diccionario.h"
+
 // #include <set> ¿Hay que ponerlo?
 //#include <string> ¿Hay que ponerlo?
 // #include <vector> ¿Hay que ponerlo?
@@ -53,7 +54,7 @@ istream & operator>> (istream & is, Diccionario &D){
 
 
 Diccionario::iterator::iterator (){
-  //Ni idea
+
 }
 
 string Diccionario::iterator::operator *(){
@@ -61,8 +62,8 @@ string Diccionario::iterator::operator *(){
 }
 
 Diccionario::iterator & Diccionario::iterator::operator ++(){
-  it = it++;
-  return *(this);
+  it++;
+  return *this ;
 }
 
 bool Diccionario::iterator::operator ==(const iterator &i){
@@ -71,4 +72,27 @@ bool Diccionario::iterator::operator ==(const iterator &i){
 
 bool Diccionario::iterator::operator !=(const iterator &i){
   return i.it != it;
+}
+
+set<string> Diccionario::SacarPalabras(const multiset<char> & seleccionadas){
+  set<string> resultado;
+  for (set<string>::iterator it = datos.begin(); it!=datos.end(); ++it){
+    if ((*it).size() <= seleccionadas.size()){
+      multiset<char> aux = seleccionadas;
+      bool fin = false;
+      for(int i=0; i<(*it).size()&& !fin; i++){
+        multiset<char>::iterator iter = aux.find((*it)[i]);
+        if(iter != aux.end())
+          aux.erase(iter);
+        else
+          fin =true;
+      }
+
+      if(!fin)
+        resultado.insert((*it));
+    }
+
+}
+
+  return resultado;
 }
