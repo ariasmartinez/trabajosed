@@ -48,8 +48,9 @@ bool ConjuntoLetras::leerDeFichero(const char *fichero){
 		else{
 				cout << "Error de apertura del fichero " << fichero << endl;
 				cond=false;
-        is.close();
+
 		}
+    is.close();
 		return cond;
 }
 

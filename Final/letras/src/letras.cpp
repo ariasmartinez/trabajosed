@@ -10,6 +10,7 @@
 // No nos van a contratar en google eso lo tenemos claro
 //parametros :  fich_diccionario     letras.txt(letras con la cantidad y los puntos)     nºletras     modalidad del juego(L o P)
 
+bool EstaSeleccionados(const multiset<char> & seleccionados, string solucion);
 
 int main(int narg, char * argv[]){
   if (narg != 5){
@@ -23,13 +24,11 @@ int main(int narg, char * argv[]){
     return 0;
   }
   Diccionario D;
-  cout << "Cargando diccionario...." << endl;
   fich_diccionario >> D;
-  cout << "Leido el diccionario..."<< endl;
+
 
 
   int num_letras = atoi(argv[3]);
-  //¿funciona?
   string mod = argv[4];
   char modalidad = mod[0];
 
@@ -42,16 +41,15 @@ int main(int narg, char * argv[]){
   ConjuntoLetras conj_letras;
   string solucion;
   char respuesta = 's';
-  
+
   if (conj_letras.leerDeFichero(argv[2]) != true){
     cout << "Error cargando los datos de " << argv[2] << " en ConjuntoLetras." << endl;
     exit(-1);
   }
-  cout << conj_letras;
+
   multiset<char> seleccionadas;
   BolsaLetras bolsa (conj_letras);
-  cout << "Vamos a mostrar la bolsa que hemos creado en el letras.cpp" << endl;
-  cout << bolsa << endl;
+
 
   while(respuesta == 's'){
 
@@ -65,7 +63,10 @@ int main(int narg, char * argv[]){
     cout << "Dime tu solucion: " << endl;
     cin >> solucion;
     cout << "Tu solución es: " << solucion << endl;
-    if(!D.Esta(solucion))
+
+    if(!EstaSeleccionados(seleccionadas,solucion))
+      cout << "Esa palabra no se puede formar con las letras seleccionadas" << endl;
+    else if(!D.Esta(solucion))
       cout << "Dicha palabra no se encuentra en el diccionario" << endl;
     else if(modalidad == 'L')
       cout << "Tu puntuación es de: " << solucion.size() << " puntos" << endl;
@@ -87,4 +88,26 @@ int main(int narg, char * argv[]){
     cout << "¿Quieres seguir jugando? (responde s para sí)" << endl;
     cin >> respuesta;
   }
+  fich_diccionario.close();
+  return 0;
+}
+
+
+
+bool EstaSeleccionados(const multiset<char> & seleccionadas, string solucion){
+    bool esta = true;
+    if (solucion.size() <= seleccionadas.size()){
+      multiset<char> aux = seleccionadas;
+      for(int i=0; i<solucion.size()&& esta; i++){
+        multiset<char>::iterator iter = aux.find(solucion[i]);
+        if(iter != aux.end())
+          aux.erase(iter);
+        else
+          esta =false;
+      }
+    }
+    else esta = false;
+
+      return esta;
+
 }
