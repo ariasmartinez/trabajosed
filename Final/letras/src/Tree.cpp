@@ -87,3 +87,47 @@ Tree::Tree(const Diccionario &d){
   tree_iterator Tree::end(){
 
   }
+
+  /*
+    recorre un camino bueno dado un nodo hasta una hoja y los mete en la pila-vector
+
+  */
+
+  /*
+    PROBLEMAS DEL MÉTODO  -> SOLUCIONES (lucia no me mates)
+      al hacer top se borra -> utilizar un vector
+      necesitamos utilizar childer -> lo hacemos friend
+      hacer metodo esBueno de Nodo
+  */
+  void Tree::tree_iterator::meterHijosBuenos(){
+    if (!node_stack.top().is_leaf()){ // qhacer que no se borre el nodo de la pila!
+      Node_Set::iterator it_set;
+      it_set = node_stack.top().children().begin();
+
+      for (it_set = node_stack.top().children().begin(); it_set != node_stack.top().children().end() && encontrado == false; it_set++){
+        if ((*it_set).esBueno()){
+          encontrado = true;
+          node_stack.push(*it_set);
+          meterHijosBuenos();
+        }
+      }
+  }
+ }
+
+ tree_iterator& Tree::tree_operator::operator++(){
+   while((*this) != end()){
+     if (!node_stack.top().isleaf()){
+       meterHijosBuenos();
+       return (*this);
+     }
+     else
+      node_stack.erase(node_stack.size()-1);
+   }
+   return NULL;
+ }
+
+ tree_iterator Tree::tree_operator::begin(){
+   node_stack.push(root);
+   meterHijosBuenos();
+   return node_stack[node_stack.size()-1];
+ }

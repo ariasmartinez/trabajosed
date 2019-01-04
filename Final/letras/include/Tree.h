@@ -1,4 +1,4 @@
- 
+
 /**
  * @file inc/Tree.h
  * @author Gustavo Rivas Gervilla
@@ -65,7 +65,7 @@ public:
      * @param node: Nodo donde empezamos a iterar.
      */
     tree_iterator(Node);
-    
+
     friend class Tree;
   public:
     /**
@@ -132,6 +132,11 @@ public:
    * @return El flujo donde se lee.
    */
   friend ostream& operator<<(ostream &os, const Tree &tree);
+
+  void meterHijosBuenos();
+
+
+
 };
 
 #endif
