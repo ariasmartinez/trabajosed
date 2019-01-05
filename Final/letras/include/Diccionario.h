@@ -10,6 +10,8 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "ConjuntoLetras.h"
+#include "Letra.h"
 
 using namespace std;
 
@@ -58,6 +60,8 @@ public:
   * @return Devuelve un set con las palabras válidas
   */
   set<string> SacarPalabras(const multiset<char> & seleccionadas);
+
+  ConjuntoLetras buscarFrecuenciaLetras(ConjuntoLetras & conjunto)const ;
 
   class iterator{
   private:

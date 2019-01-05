@@ -76,7 +76,7 @@ int ConjuntoLetras::Puntuacion(string palabra){
 
 }
 
-set<Letra>::iterator  ConjuntoLetras::BuscarLetra(char letra){
+set<Letra>::iterator ConjuntoLetras::BuscarLetra(char letra) const{
   for(set<Letra>::iterator it = begin(); it!= end() && (*it).Caracter() <= letra ; it ++){
     if((*it).Caracter()==letra)
       return it;
@@ -129,3 +129,36 @@ pair<int,set<string> > ConjuntoLetras::MejoresPalabras (const set<string> & pala
 
   return resultado;
 }
+
+
+  bool ConjuntoLetras::salvarFrecuenciasAFichero(const char *fichero){
+       bool cond = true;
+       ofstream os;
+       os.open(fichero);
+       if (os){
+           os << (*this);
+           if (!os){
+               cout << "Error cargando los datos al fichero" << fichero << endl;
+               cond=false;
+           }
+           os.close();
+       }
+       else {
+           cout << "Error de apertura del fichero " << fichero << endl;
+           cond =false;
+       }
+       os.close();
+       return cond;
+  }
+
+  void ConjuntoLetras::CalcularPorcentaje(){
+    int total = 0;
+    int porcentaje;
+    for (set<Letra>:: iterator it = datos.begin(); it != datos.end(); it++){
+      total = total + (*it).Cantidad();
+    }
+    for (set<Letra>:: iterator itb = datos.begin(); itb != datos.end(); itb++){
+      porcentaje = ((*itb).Cantidad()/total)*100;
+      (*itb).setPuntuacion(porcentaje);
+    }
+  }

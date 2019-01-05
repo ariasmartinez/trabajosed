@@ -32,6 +32,7 @@ public:
 
   bool leerDeFichero(const char *fichero);
 
+  bool salvarFrecuenciasAFichero(const char *fichero);
   //BolsaLetras seleccionaAleatorio(int numero);
   /**
   @brief Lee de un flujo de entrada un conjunto de letras
@@ -52,7 +53,7 @@ public:
   * @param letra char cuya Letra queremos buscar
   * @return Un iterador a la Letra con el caracter letra o end() si no existe dicha letra
   */
-  set<Letra>::iterator BuscarLetra(char letra);
+  set<Letra>::iterator BuscarLetra(char letra) const;
 
   /**
   * @brief Devuelve la puntuación de la palabra pasada por argumento
@@ -73,6 +74,8 @@ public:
   * @return Devuelve un pair formado por un entero con la puntuación y un set<string> con las palabras seleccionadas
   */
   pair<int,set<string> > MejoresPalabras (const set<string> & palabras, char modo);
+
+  void CalcularPorcentaje();
 
 };
 

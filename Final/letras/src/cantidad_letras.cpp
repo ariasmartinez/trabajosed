@@ -3,6 +3,8 @@
 #include "Diccionario.h"
 #include "ConjuntoLetras"
 
+
+// diccionario      letras.txt(fichero con las letras permitidas    fich_salida  )
 int main(int narg, char * argv[]){
   if (narg != 4){
     cout << "Has introducido mal los parámetros." << endl;
@@ -14,6 +16,8 @@ int main(int narg, char * argv[]){
     cout<<"No puedo abrir el fichero " << argv[1] << endl;
     return 0;
   }
+
+
   Diccionario D;
   cout << "Cargando diccionario...." << endl;
   fich_diccionario >> D;
@@ -22,24 +26,26 @@ int main(int narg, char * argv[]){
 
   ifstream fich_letras_permitidas(argv[2]);
   if (!fich_letras_permitidas){
-    cout<<"No puedo abrir el fichero " << argv[1] << endl;
+    cout<<"No puedo abrir el fichero " << argv[2] << endl;
     return 0;
   }
-  ifstream fich_letras_frecuencia;
+
+  ifstream fich_salida(argv[3]);
+  if (!fich_salida){
+    cout<<"No puedo abrir el fichero " << argv[3] << endl;
+    return 0;
+  }
 
   ConjuntoLetras conjunto;
-
-  // no se como crear el fichero con las letras permitidas ¿tenemos que hacerlo con alguna funcion?
-  // (se le puede pasar un diccionario a leerdeFichero y creo que como esta implementado el metodo lo haria, tambien habria que
-// hacer que cree o devuelva un fichero)
-//o sea esto ahora mismo solo serviria pa que lo que tenemos en un fichero lo convirtamos en el tipo de dato COnjuntoletras
   conjunto.leerDeFichero(fich_letras_permitidas);
+  ConjuntoLetras:: iterator it;
+  for (it = conjunto.begin(); it != conjunto.end(); it++){
+    (*it).setCantidad(0);
+  }
 
-  //ahora habria que ir recorriendo el diccionario y sumando la frecuencia de cada letra (¿se puede hacer en ek mismo COnjuntoLetras?)
-//(esto hay que convertirlo en un fichero)
+  D.buscarFrecuenciaLetras(conjunto);
+  conjunto.CalcularPorcentaje();
+  conjunto.salvarFrecuenciasAFichero(fich_salida);
 
-
-  //asignar puntuaciones (estaria bien tambn convertirlo en un fichero pporque luego hace falta pa letras.cpp)
-
-
+  
 }
