@@ -100,15 +100,16 @@ set<string> Diccionario::SacarPalabras(const multiset<char> & seleccionadas){
 
 
 ConjuntoLetras Diccionario::buscarFrecuenciaLetras(ConjuntoLetras & conjunto ) const{
-
   int puntu_nueva = 0;
   for (set<string>:: iterator it = datos.begin(); it != datos.end(); it++){
     for (int i = 0; i < (*it).size(); i++){
       set<Letra>:: iterator it_letra;
       it_letra = conjunto.BuscarLetra((*it)[i]);
       if (it_letra != conjunto.end()){
-        int puntu_nueva = (*it_letra).Cantidad();
-    //  (*it_letra).setCantidad(puntu_nueva);
+        puntu_nueva = (*it_letra).Cantidad();
+        Letra l;
+        l.setCantidad(puntu_nueva);
+        (*it_letra).setCantidad(puntu_nueva);
       }
     }
   }

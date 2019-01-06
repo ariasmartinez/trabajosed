@@ -92,9 +92,13 @@ public:
  }
 
  //funcionara asi?
- iterator end() {
+ /*iterator end() {
    iterator itb(datos.end());
    return itb;
+ }*/
+
+ iterator end() {
+   return datos.end();i
  }
 
 };

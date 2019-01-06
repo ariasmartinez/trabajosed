@@ -28,7 +28,7 @@ $(obj)/letras.o: $(inc)/Diccionario.h $(inc)/BolsaLetras.h $(inc)/ConjuntoLetras
 $(obj)/cantidad_letras.o: $(inc)/ConjuntoLetras.h $(inc)/Diccionario.h $(src)/cantidad_letras.cpp
 	g++ $(CPPFLAGS) $(src)/cantidad_letras.cpp -o $(obj)/cantidad_letras.o
 
-$(obj)/Diccionario.o: $(inc)/Diccionario.h $(src)/Diccionario.cpp $(inc)/ConjuntoLetras.h $(inc)/Letra.h
+$(obj)/Diccionario.o: $(inc)/Diccionario.h $(inc)/ConjuntoLetras.h $(inc)/Letra.h $(src)/Diccionario.cpp 
 	g++ $(CPPFLAGS) $(src)/Diccionario.cpp -o $(obj)/Diccionario.o
 
 $(obj)/ConjuntoLetras.o: $(inc)/ConjuntoLetras.h $(src)/ConjuntoLetras.cpp  $(inc)/BolsaLetras.h $(inc)/Letra.h
