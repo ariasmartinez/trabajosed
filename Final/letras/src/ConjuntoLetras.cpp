@@ -44,7 +44,6 @@ bool ConjuntoLetras::leerDeFichero(const char *fichero){
 		ifstream is;
 		is.open(fichero);
 		if(is){
-      cout << "Aquí llego::leer de fichero" << endl;
 				is >> (*this);
 		}
 		else{
@@ -56,13 +55,6 @@ bool ConjuntoLetras::leerDeFichero(const char *fichero){
 		return cond;
 }
 
-//estaria bien cogerlas con la probabilidad proporcional a la cantidad que hay (COnjunto de letras es un set ;(
-//tambien tener en cuenta que los elementos de COnjunto de letras son Letras y los de bolsa char
-/*  BolsaLetras bolsa;
-  multiset<char> multiset_bolsa;
-  return bolsa;
-}
-*/
 
 int ConjuntoLetras::Puntuacion(string palabra){
   int puntuacion=0;
@@ -83,7 +75,7 @@ set<Letra>::iterator ConjuntoLetras::BuscarLetra(char letra) const{
     if((*it).Caracter()==letra)
       return it;
   }
-  
+
   return cend();
 }
 
@@ -160,7 +152,7 @@ pair<int,set<string> > ConjuntoLetras::MejoresPalabras (const set<string> & pala
     for (set<Letra>::iterator it = datos.begin(); it != datos.end(); it++){
       total = total + (*it).Cantidad();
     }
-    cout << total << endl;
+    
     for (set<Letra>::iterator itb = datos.begin(); itb != datos.end(); itb++){
       porcentaje = ((*itb).Cantidad()/total);
       Letra aux (*itb);

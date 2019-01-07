@@ -39,7 +39,7 @@ int main(int narg, char * argv[]){
     auxiliar.insert(aux);
   }
   conjunto=auxiliar;
-  cout << "Aquí no me peto(antes buscarFrecuenciaLetras0)" << endl;
+
   D.buscarFrecuenciaLetras(conjunto);
   conjunto.CalcularPorcentaje();
   conjunto.salvarFrecuenciasAFichero(argv[3]);
