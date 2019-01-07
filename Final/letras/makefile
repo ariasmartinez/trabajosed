@@ -41,6 +41,10 @@ $(obj)/BolsaLetras.o: $(inc)/BolsaLetras.h $(src)/BolsaLetras.cpp $(inc)/Conjunt
 	g++ $(CPPFLAGS) $(src)/BolsaLetras.cpp -o $(obj)/BolsaLetras.o
 
 
-
 documentacion:
 	doxygen doc/doxys/Doxyfile
+clean :
+	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
+
+mrproper : clean
+	-rm $(BIN)/* doc/html/*
