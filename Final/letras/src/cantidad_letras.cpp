@@ -1,7 +1,13 @@
+/**
+* @file cantidad_letras.cpp
+* @brief Implementación de la función principal del programa cantidad_letras
+* @authors Celia Arias Martínez
+           Lucía Salamanca López
+*/
 #include<fstream>
 #include <iostream>
 #include "Diccionario.h"
-#include "ConjuntoLetras"
+#include "ConjuntoLetras.h"
 
 
 // diccionario      letras.txt(fichero con las letras permitidas    fich_salida  )
@@ -22,30 +28,21 @@ int main(int narg, char * argv[]){
   cout << "Cargando diccionario...." << endl;
   fich_diccionario >> D;
   cout << "Leido el diccionario..."<< endl;
-  cout << D;
 
-  ifstream fich_letras_permitidas(argv[2]);
-  if (!fich_letras_permitidas){
-    cout<<"No puedo abrir el fichero " << argv[2] << endl;
-    return 0;
-  }
 
-  ifstream fich_salida(argv[3]);
-  if (!fich_salida){
-    cout<<"No puedo abrir el fichero " << argv[3] << endl;
-    return 0;
-  }
 
   ConjuntoLetras conjunto;
-  conjunto.leerDeFichero(fich_letras_permitidas);
-  ConjuntoLetras:: iterator it;
-  for (it = conjunto.begin(); it != conjunto.end(); it++){
-    (*it).setCantidad(0);
+  conjunto.leerDeFichero(argv[2]);
+  ConjuntoLetras auxiliar;
+  for (set<Letra>::iterator it = conjunto.begin(); it != conjunto.end(); it++){
+    Letra aux((*it).Caracter(),0,0);
+    auxiliar.insert(aux);
   }
-
+  conjunto=auxiliar;
+  cout << "Aquí no me peto(antes buscarFrecuenciaLetras0)" << endl;
   D.buscarFrecuenciaLetras(conjunto);
   conjunto.CalcularPorcentaje();
-  conjunto.salvarFrecuenciasAFichero(fich_salida);
+  conjunto.salvarFrecuenciasAFichero(argv[3]);
 
-  
+
 }

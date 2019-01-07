@@ -6,7 +6,6 @@
 */
 #include <iostream>
 #include <fstream>
-#include "BolsaLetras.h"
 #include "ConjuntoLetras.h"
 #include "Letra.h"
 
@@ -25,6 +24,9 @@ istream & operator >> (istream & is, ConjuntoLetras & conj){
     is >> let;
     conj.datos.insert(let);
   }
+  set<Letra>::iterator it = conj.datos.end();
+  it --;
+  conj.datos.erase(it);
 
   return is;
 }
@@ -42,8 +44,8 @@ bool ConjuntoLetras::leerDeFichero(const char *fichero){
 		ifstream is;
 		is.open(fichero);
 		if(is){
+      cout << "Aquí llego::leer de fichero" << endl;
 				is >> (*this);
-				is.close();
 		}
 		else{
 				cout << "Error de apertura del fichero " << fichero << endl;
@@ -77,12 +79,12 @@ int ConjuntoLetras::Puntuacion(string palabra){
 }
 
 set<Letra>::iterator ConjuntoLetras::BuscarLetra(char letra) const{
-  for(set<Letra>::iterator it = begin(); it!= end() && (*it).Caracter() <= letra ; it ++){
+  for(set<Letra>::iterator it = cbegin(); it!= cend() && (*it).Caracter() <= letra ; it ++){
     if((*it).Caracter()==letra)
       return it;
   }
-  //Esto no se si puede ser la verdad supongo que si
-  return end();
+  
+  return cend();
 }
 
 typename set<Letra>::iterator ConjuntoLetras::begin(){
@@ -93,11 +95,11 @@ typename set<Letra>::iterator ConjuntoLetras::end(){
   return datos.end();
 }
 
-typename set<Letra>::const_iterator ConjuntoLetras::begin() const{
+typename set<Letra>::const_iterator ConjuntoLetras::cbegin() const{
   return datos.begin();
 }
 
-typename set<Letra>::const_iterator ConjuntoLetras::end() const{
+typename set<Letra>::const_iterator ConjuntoLetras::cend() const{
   return datos.end();
 }
 
@@ -152,13 +154,20 @@ pair<int,set<string> > ConjuntoLetras::MejoresPalabras (const set<string> & pala
   }
 
   void ConjuntoLetras::CalcularPorcentaje(){
-    int total = 0;
-    int porcentaje;
-    for (set<Letra>:: iterator it = datos.begin(); it != datos.end(); it++){
+    double total = 0;
+    double porcentaje;
+    ConjuntoLetras auxiliar;
+    for (set<Letra>::iterator it = datos.begin(); it != datos.end(); it++){
       total = total + (*it).Cantidad();
     }
-    for (set<Letra>:: iterator itb = datos.begin(); itb != datos.end(); itb++){
-      porcentaje = ((*itb).Cantidad()/total)*100;
-      (*itb).setPuntuacion(porcentaje);
+    cout << total << endl;
+    for (set<Letra>::iterator itb = datos.begin(); itb != datos.end(); itb++){
+      porcentaje = ((*itb).Cantidad()/total);
+      Letra aux (*itb);
+      aux.setPuntuacion(porcentaje);
+      auxiliar.insert(aux);
+
     }
+
+    *this=auxiliar;
   }

@@ -14,16 +14,6 @@
 
 using namespace std;
 
-/* Si conseguimos hacer el de conjuntoletras no hace falta este
-multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
-  srand(time(NULL));
-  multiset<char> aleat;
-  for (int i=0; i < cantidad; i++){
-    aleat.insert(datos.at())
-    datos.insert(rand()%(datos.size()-1));
-  }
-}
-*/
 
 multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
 	srand(time(NULL));
@@ -49,7 +39,7 @@ multiset<char> BolsaLetras::seleccionaAleatorio(int cantidad){
 
 
 BolsaLetras::BolsaLetras(const ConjuntoLetras & conjun){
-	for (set<Letra>::iterator it = conjun.begin(); it != conjun.end(); it ++){
+	for (set<Letra>::iterator it = conjun.cbegin(); it != conjun.cend(); it ++){
 		for (int i=0; i<((*it).Cantidad()); i++){
 			datos.insert((*it).Caracter());
 		}

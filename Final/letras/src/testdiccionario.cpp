@@ -1,3 +1,9 @@
+/**
+* @file testdiccionario.cpp
+* @brief Implementación de la función principal del programa testdiccionario
+* @authors Celia Arias Martínez
+          Lucía Salamanca López
+*/
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -5,7 +11,7 @@
 #include <set>
 #include "Diccionario.h"
 
-//ESTO ES LO QUE VIENE EN EL GUIÓN
+
 
 int main(int narg, char * argv[]){
   if(narg!=2){

@@ -1,4 +1,9 @@
-
+/**
+* @file letras.cpp
+* @brief Implementación de la función principal del programa letras
+* @authors Celia Arias Martínez
+           Lucía Salamanca López
+*/
 #include "Diccionario.h"
 #include "ConjuntoLetras.h"
 #include "BolsaLetras.h"
@@ -7,7 +12,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-// No nos van a contratar en google eso lo tenemos claro
+
 //parametros :  fich_diccionario     letras.txt(letras con la cantidad y los puntos)     nºletras     modalidad del juego(L o P)
 
 bool EstaSeleccionados(const multiset<char> & seleccionados, string solucion);
@@ -46,7 +51,7 @@ int main(int narg, char * argv[]){
     cout << "Error cargando los datos de " << argv[2] << " en ConjuntoLetras." << endl;
     exit(-1);
   }
-
+  cout << conj_letras<< endl;
   multiset<char> seleccionadas;
   BolsaLetras bolsa (conj_letras);
 

@@ -13,7 +13,7 @@ class Letra{
 private:
   char carac; ///< Carácter de la propia letra
   int cant;  ///< Cantidad de veces que puede aparecer
-  int punt; ///< Puntuación de la letra
+  double punt; ///< Puntuación de la letra
 
 public:
   /**
@@ -21,11 +21,16 @@ public:
   **/
   Letra();
   /**
+  * @brief Constructor a partir de un char, un int y un double
+  * @param caracter char para el carac
+  * @param cantidad entero para cant
+  * @param puntuacion double para punt
+  */
+  Letra(char caracter, int cantidad, double puntuacion);
+  /**
   * @brief Devuelve el carácter de la Letra
   * @return carácter del objeto
   */
-  Letra(char caracter, int cantidad, int puntuacion);
-
   char Caracter()const{
     return carac;
   }
@@ -41,23 +46,36 @@ public:
   * @brief Devuelve la puntuación de la letra
   * @return puntuación de la letra
   */
-  int Puntuacion()const{
+  double Puntuacion()const{
     return punt;
   }
-
+  /**
+  * @brief Modifica el caracter la letra
+  * @param caract Nuevo char para carac
+  */
   void setCaracter(char caract){
     carac = caract;
   }
-
+  /**
+  * @brief Modifica la cantidad de la letra
+  * @param caract Nuevo entero para cant
+  */
   void setCantidad(int canti){
     cant = canti;
   }
-
-  void setPuntuacion(int puntu){
+  /**
+  * @brief Modifica la puntuación de la letra
+  * @param caract Nuevo double para punt
+  */
+  void setPuntuacion(double puntu){
     punt = puntu;
   }
-
-  bool operator<(const Letra & letra_b) const;
+  /**
+  * @brief Operador de menor igual
+  * @param letra_b Letra a comparar con this
+  * return true si this <= letra_b, false en caso contrario
+  */
+  bool operator<=(const Letra & letra_b) const;
   /**
   @brief Lee de un flujo de entrada un diccionario
   @param is:flujo de entrada

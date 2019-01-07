@@ -61,7 +61,11 @@ public:
   */
   set<string> SacarPalabras(const multiset<char> & seleccionadas);
 
-  ConjuntoLetras buscarFrecuenciaLetras(ConjuntoLetras & conjunto)const ;
+  /**
+  * @brief Calcula la cantidad de veces que aparece la letra en el diccionario
+  * @param conjunto ConjuntoLetras que contiene las letras permitidas y en el que se guarda la frecuencia de cada letra. Es MODIFICADO
+  */
+  void buscarFrecuenciaLetras(ConjuntoLetras & conjunto)const ;
 
   class iterator{
   private:
@@ -69,7 +73,6 @@ public:
 
   public:
     iterator ();
-    //lo he puesto
     iterator(set<string>::iterator itb){
       it = it;
     }
@@ -80,32 +83,23 @@ public:
     friend class Diccionario;
   };
 
- iterator begin()const {
+ set<string>::iterator cbegin()const {
    return datos.begin();
  }
- iterator end() const{
+ set<string>::iterator cend() const{
    return datos.end();
  }
 
- iterator begin() {
+ set<string>::iterator begin() {
    return datos.begin();
  }
 
- //funcionara asi?
- /*iterator end() {
-   iterator itb(datos.end());
-   return itb;
- }*/
-
- iterator end() {
-   return datos.end();i
+ set<string>::iterator end() {
+   return datos.end();
  }
 
 };
 
 
-/*typename list<data<T,U> >::iterator  Diccionario<T,U>::begin(){
-	return datos.begin();
-}*/
 
 #endif
